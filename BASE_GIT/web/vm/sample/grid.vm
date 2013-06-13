@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta http-equiv="cache-control" content="no-cache" />
+	<meta http-equiv="expires" content="0" />
+	<title> Sample </title>
+	<script language="javascript" src="/js/lib/jquery.jqGrid-4.3.2/js/jquery-1.7.2.min.js"></script>
+    <script language="javascript" src="/js/lib/jquery.jqGrid-4.3.2/js/i18n/grid.locale-en.js"></script>
+    <script language="javascript" src="/js/lib/jquery.jqGrid-4.3.2/js/jquery.jqGrid.min.js"></script>
+    
+    <link rel="stylesheet" type="text/css" media="screen" href="/js/lib/jquery.jqGrid-4.3.2/css/ui.jqgrid.css" /> 
+    <link rel="stylesheet" type="text/css" media="screen" href="/js/lib/jquery.jqGrid-4.3.2/themes/ui-lightness/jquery-ui-1.8.20.custom.css"/>
+    
+    <script language="javascript">
+	 $(document).ready(function(){
+	 	var id = "gridList";
+    	jQuery("#"+id).jqGrid({
+    		// 리스트 컨트롤러 
+        	url:"sample.do?cmd=gridList",
+    		mtype:'POST',
+            datatype: "json",  
+    		jsonReader : {  
+     			page: "page", 
+     			total: "total", 
+    			root: "list", 
+    			records: function(obj){return obj.length;},
+    			repeatitems: false, 
+    			seq: "seq"
+    		},  
+    		colNames:['No','사번', '성명', '내용'],
+    		colModel:[
+    			{	
+					name:'seq',	
+					index:'seq',	
+					width:60 , 
+					key:true, 
+                	searchoptions: { sopt: ['eq']}
+				},
+    			{
+					name:'sabun',
+					index:'sabun', 
+					width:150, 
+					editable:true, 
+					edittype:'text', 
+                	searchoptions: { sopt: ['eq']}
+				},
+    			{
+					name:'name',
+					index:'name', 
+					width:150, 
+					editable:true, 
+					edittype:'text', 
+                	searchoptions: { sopt: ['eq']}
+				},
+    			{
+					name:'content',
+					index:'content', 
+					width:300, 
+					editable:true, 
+					edittype:'text', 
+					sortable:false, 
+                	searchoptions: { sopt: ['eq']}
+				}
+       	 	],
+    
+			// 한페이지에 몇개씩 보여줄지를 결정
+    		rowNum:10,
+			
+			// 한페이지에 몇개씩 보여줄지를 정하는 부분을 3가지 type으로 선택할 수 있게 함
+    	   	rowList:[5,10,15],
+			
+			// 화면 크기에 따라 자동으로 width 설정
+			autowidth:true, 
+			
+			// 페이지 출력 부분
+    		pager: '#pager',
+    		
+     		// records의 View여부
+			viewrecords: false,
+			
+			// reload 여부
+    		loadonce:false,
+			
+			// Grid header위에 타이틀 표기
+     		//caption:"JSON Example",
+    		
+    		// 셀 선택시
+    		onCellSelect: function(rowid, iCol){      
+              var list = jQuery("#"+id).getRowData(rowid);
+    		  cellData(list);
+    		},
+    		
+    		// 에디트할 컨트롤러
+    		cellEdit:true,
+    		cellsubmit:'remote',
+    		cellurl:'/sample.do?cmd=modifyGrid',  
+    		beforeSubmitCell:function(rowid, cellname, value){
+            	return {"id":rowid, "cellName":cellname, "cellValue":value}
+    		},
+			
+			// 버튼 이벤트 처리 url
+			editurl:'/sample.do?cmd=doEditGrid'
+    	});
+		
+		// 버튼 ui 추가
+		jQuery("#"+id).jqGrid(
+			'navGrid',
+			'#pager',
+			{
+				add:true,
+				del:true,
+				edit:false,
+				search:true,
+				refresh:false,
+				position:'right'
+			}
+		);
+    });
+    
+    // 셀 선택값 혹인
+    function cellData(list){
+    	jQuery("#seq").val(list.seq);
+    	jQuery("#sabun").val(list.sabun);
+    	jQuery("#name").val(list.name);
+    }
+    </script>
+  </head>
+<body>
+<!-- 리스트 -->
+<table id="gridList" class="scroll"></table>
+<div id="pager" class="scroll"></div>
+<a href="/">목록</a>
+</body>
+</html>

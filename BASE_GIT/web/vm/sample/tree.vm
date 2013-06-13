@@ -1,0 +1,225 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta http-equiv="cache-control" content="no-cache" />
+	<meta http-equiv="expires" content="0" />
+	<title> Sample </title>
+	<script language="javascript" src="/js/lib/dynatree-1.2.1_rc3/jquery/jquery.js"></script>
+    <script language="javascript" src="/js/lib/dynatree-1.2.1_rc3/jquery/jquery-ui.custom.js"></script>
+    <script language="javascript" src="/js/lib/dynatree-1.2.1_rc3/jquery/jquery.cookie.js"></script>
+	<script language="javascript" src="/js/lib/dynatree-1.2.1_rc3/src/jquery.dynatree.js"></script>
+	
+	<link rel='stylesheet' type='text/css' href='/js/lib/dynatree-1.2.1_rc3/src/skin/ui.dynatree.css' id="skinSheet"/>
+	<script language="javascript">
+	 //$(function(){        
+	// Attach the dynatree widget to an existing <div id="tree"> element       
+	// and pass the tree options as an argument to the dynatree() function:
+	function InitTree() { 
+    	$("#tree").dynatree({
+			// Called when a node was activated. 
+    		onActivate: function(node) {
+				//alert('node.data.key : '+node.data.key);
+				//alert('node.data.title : '+node.data.title);
+				$("[name=contentFrame]").attr("src", "sample.do?cmd=gridUser"
+				+"&searchField=ORG_CODE"
+				+"&searchString="+node.data.key);
+    		},            
+    		// 1:activate, 2:expand, 3:activate and expand
+			clickFolderMode: 1, 
+			// Persist expand-status to a cookie
+    		persist:false,
+			
+			// Automatically collapse all siblings, when a node is expanded.
+    		autoCollapse: false, 
+			
+			//최소 노드 펼침
+			minExpandLevel: 2,
+			
+			/*
+			children: [               
+				$!result
+			]
+			*/
+			
+			// 체크박스 노출여부
+			$select
+			
+			// 체크박스 이벤트 처리
+			onSelect: function(select, node) {        
+    			var selKeys = jQuery.map(node.tree.getSelectedNodes(), function(node){         
+    				return node.data.key;        
+    			});       
+    			jQuery("#echoSelection").text(selKeys.join(", "));       
+    			var selRootNodes = node.tree.getSelectedNodes(true);       
+    			var selRootKeys = jQuery.map(selRootNodes, function(node){          
+    				return node.data.key;        
+    			});        
+    			jQuery("#echoSelectionRootKeys").text(selRootKeys.join(", "));        
+    			jQuery("#echoSelectionRoots").text(selRootNodes.join(", "));      
+			},
+			
+			initAjax: {        
+				url: "sample.do",
+				data: { 
+					cmd: "treeAjax",
+					searchField : jQuery('#searchField').val(),
+					searchString : jQuery('#searchString').val()
+				}
+			}
+    	});   
+	}
+    //});
+    
+	$(document).ready(function() {
+	
+		// 트리 로딩
+		InitTree();
+
+		/* 버튼 세팅 */
+    	// 전체 펼침
+    	$("#btnExpandAll").click(function(){
+    		$("#tree").dynatree("getRoot").visit(function(node){       
+    			node.expand(true);      
+    		});     
+    		return false;   
+    	});
+    	
+    	// 전체 닫기
+    	$("#btnCollapseAll").click(function(){
+    	 	$("#tree").dynatree("getRoot").visit(function(node){       
+    			node.expand(false);      
+    		});      
+    		return false;    
+    	});
+		
+		// 토글 펼치기 또는 닫기
+		$("#btnToggleExpand").click(function(){      
+			$("#tree").dynatree("getRoot").visit(function(node){        
+				node.toggleExpand();      
+			});      
+			return false;    
+		});
+		
+		// 노드 정렬
+		$("#btnSortAll").click(function(){      
+			var node = $("#tree").dynatree("getRoot");      
+			node.sortChildren(null, true);    
+		});
+		
+		// 선택한 노드 정렬
+		$("#btnSortActive").click(function(){
+			var node = $("#tree").dynatree("getActiveNode");      
+			// Custom compare function (optional) that sorts case insensitive      v
+			var cmp = function(a, b) {       
+				a = a.data.title.toLowerCase();        
+				b = b.data.title.toLowerCase();        
+				return a > b ? 1 : a < b ? -1 : 0;      
+			};      
+			node.sortChildren(cmp, false);    
+		});
+
+		// 비활성화
+		$("#btnDisable").toggle(function(){        
+			$("#tree").dynatree("disable");        
+			$(this).text("Enable");        
+			return false;      
+		}, function(){        
+			$("#tree").dynatree("enable");        
+			$(this).text("Disable");        
+			return false;      
+		});
+		
+		// 검색
+		$("#search").click(function(){
+			fnSearch();
+		});
+		$('#searchString').keypress(function(event){
+    		if(event.which == 13){
+    			fnSearch();
+    		}
+		});
+		
+		// 스킨 변경
+		$("#skinCombo")
+		.val(0) // set state to prevent caching
+		.change(function(){
+			var href = "/js/lib/dynatree-1.2.1_rc3/src/"
+				+ $(this).val()
+				+ "/ui.dynatree.css"
+				+ "?reload=" + new Date().getTime();
+			$("#skinSheet").attr("href", href);
+		});
+	});
+	
+	// 검색
+	function fnSearch(){
+		if(jQuery('#searchField').val()=="org_name"){
+        	$("#tree").dynatree("destroy"); 
+            	InitTree();
+		}else{
+			$("[name=contentFrame]").attr("src", "sample.do?cmd=gridUser"
+			+"&searchField=name&searchString=" 
+			+encodeURIComponent(jQuery('#searchString').val()));
+		}
+	}
+	</script>
+  </head>
+<body>
+	<!-- 검색 -->
+	<p>
+	<select id="searchField" name="searchField">
+		<option value="org_name">부서</option>
+		<option value="name">성명</option>
+	</select>
+	<input type="text" name="searchString" id="searchString"/>
+	<a href="#" id="search">검색</a>    
+    </p>
+	
+	<!-- 기타 기능 -->
+	<p>
+	<a href="#" id="btnExpandAll">Expand all</a> -    
+	<a href="#" id="btnCollapseAll">Collapse all</a> -    
+	<a href="#" id="btnToggleExpand">Toggle expand</a>    
+	<br>    
+	<a href="#" id="btnSortAll">Sort tree</a>    
+	<a href="#" id="btnSortActive">Sort current node</a>    
+	<br>    
+	<a href="#" id="btnDisable">Disable</a>
+	<br>
+	-
+	Skin:
+	<select id="skinCombo" size="1">
+		<option value="skin">Standard ('/skin/')</option>
+		<option value="skin-vista">Vista ('/skin-vista/')</option>
+	</select>
+	</p>
+	
+	<!-- 체크박스의 체크된 값 표시-->
+	#if($!select != "")
+	<p>
+		<div>Selected keys: <span id="echoSelection">-</span></div>  
+		<div>Selected root keys: <span id="echoSelectionRootKeys">-</span></div>  
+		<div>Selected root nodes: <span id="echoSelectionRoots">-</span></div>
+    </p>
+	#end
+	
+	<table>
+	<colgroup>    
+	<col width="300px" valign="top"/>
+	<col width="90%"/>     
+	</colgroup>  
+	<tr>    
+		<td valign="top">
+			<div id="tree"></div>
+        </td>
+		<td valign="top">
+			 <iframe src="" name="contentFrame" width="100%" height="500" scrolling="yes" marginheight="0" marginwidth="0" frameborder="0">        
+				<p>Your browser does not support iframes</p>      
+			 </iframe>
+        </td>
+    </tr>
+	</table>
+</body>
+</html>

@@ -1,0 +1,164 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta http-equiv="cache-control" content="no-cache" />
+	<meta http-equiv="expires" content="0" />
+	<title> Organization </title>
+	<script language="javascript" src="/js/lib/dynatree-1.2.1_rc3/jquery/jquery.js"></script>
+    <script language="javascript" src="/js/lib/dynatree-1.2.1_rc3/jquery/jquery-ui.custom.js"></script>
+    <script language="javascript" src="/js/lib/dynatree-1.2.1_rc3/jquery/jquery.cookie.js"></script>
+	<script language="javascript" src="/js/lib/dynatree-1.2.1_rc3/src/jquery.dynatree.js"></script>
+	
+	<link rel='stylesheet' type='text/css' href='/js/lib/dynatree-1.2.1_rc3/src/skin/ui.dynatree.css' id="skinSheet"/>
+	<script language="javascript">
+	function InitTree() { 
+    	$("#tree").dynatree({
+    		onActivate: function(node) {
+				//alert('node.data.key : '+node.data.key);
+				//alert('node.data.title : '+node.data.title);
+    		},            
+    		// 1:activate, 2:expand, 3:activate and expand
+			clickFolderMode: 1, 
+			// Persist expand-status to a cookie
+    		persist:false,
+			
+			// Automatically collapse all siblings, when a node is expanded.
+    		autoCollapse: false, 
+			
+			//최소 노드 펼침
+			minExpandLevel: 2,
+			
+			/*
+			children: [               
+				$!result
+			]
+			*/
+			
+			// 체크박스 노출여부
+			$select
+			
+			// 체크박스 이벤트 처리
+			onSelect: function(select, node) {
+    			var selKeys = jQuery.map(node.tree.getSelectedNodes(), function(node){         
+    				return node.data.key;        
+    			});
+				var selTitles = jQuery.map(node.tree.getSelectedNodes(), function(node){         
+    				return node.data.title;        
+    			});
+				
+				if(select){
+    				for(var i=0; i<selKeys.length; i++){
+    					fnAdd("selectGroup", selKeys[i], selTitles[i]);
+    				}
+				}else{
+					fnRemoveAll("selectGroup");
+					for(var i=0; i<selKeys.length; i++){
+    					fnAdd("selectGroup", selKeys[i], selTitles[i]);
+    				}
+				}
+
+				//alert(selKeys.join(", "));
+    			var selRootNodes = node.tree.getSelectedNodes(true);
+				//alert(selRootNodes.join(", "));
+    			var selRootKeys = jQuery.map(selRootNodes, function(node){          
+    				return node.data.key;        
+    			});
+				//alert(selRootKeys.join(", "));
+			},
+			
+			initAjax: {        
+				url: "organization.do",
+				data: { 
+					cmd: "treeAjax",
+					type : jQuery('#type').val(),
+					searchField : jQuery('#searchField').val(),
+					searchString : encodeURIComponent(jQuery('#searchString').val())					
+				}
+			}
+    	});   
+	}
+    //});
+    
+	$(document).ready(function() {
+		// 트리 로딩
+		InitTree();
+
+		/* 버튼 세팅 */
+    	// 검색
+		$("#search").click(function(){
+			fnSearch();
+		});
+		$('#searchString').keypress(function(event){
+    		if(event.which == 13){
+    			fnSearch();
+    		}
+		});
+	});
+	
+	// 검색
+	function fnSearch(){
+		$("#tree").dynatree("destroy"); 
+		InitTree();
+	}
+	
+	// 추가
+	function fnAdd(id, key, title){
+		//var temp = $("#"+id).children();
+	       	
+		// 오스템임플란트 관련 막음 처리
+		if(key=="B"){
+			return false;
+		}
+		// 중복 체크
+    	for(var i=0; i<$("#"+id+" option").size(); i++){
+			if(key==$("#"+id+" option:eq("+i+")").val()){
+				return false;
+			}
+    	}
+		if(key.indexOf("|") != -1 )
+			$("#"+id).append("<option value='"+key+"'>"+title+"</option>");
+	}
+	
+	// 전체 삭제
+	function fnRemoveAll(id){
+		while($("#"+id+" option").size() != 0 ){
+			$("#"+id+" option:eq(0)").remove();
+		}
+	}
+	</script>
+  </head>
+<body>
+	<input type="hidden" name="type" id="type" value="$vo.type"/>
+	<!-- 검색 -->
+	<p>
+	<select id="searchField" name="searchField">
+		<option value="org_name">부서</option>
+		#if($!vo.type != "1")
+			<option value="name">성명</option>
+			<option value="A.org_name">부서+사용자</option>
+		#end
+	</select>
+	<input type="text" name="searchString" id="searchString"/><a href="#" id="search">검색</a>    
+    </p>
+	<table>
+	<colgroup>
+	<col width="236px" valign="top"/>
+	<col width="90%"/>
+	</colgroup>  
+	<tr>    
+		<td valign="top">
+			<div id="tree" style="width:236px"></div>
+        </td>
+		<td valign="top">
+			#if($!vo.selectMode == "3" || $!vo.selectMode == "2")
+        	<select id="selectGroup" name="selectGroup" size="24" multiple="multiple">
+            </select>
+			#end
+        </td>
+    </tr>
+	</table>
+	<a href="/">목록</a>
+</body>
+</html>

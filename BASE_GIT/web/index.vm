@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta http-equiv="cache-control" content="no-cache" />
+	<meta http-equiv="expires" content="0" />
+	<title> Sample </title>
+	<script language="javascript" src="/js/lib/jquery.js"></script>
+	<script language="javascript" src="/js/lib/jfastmenu/jfastmenu_v1.2.0/jfastmenu.js"></script>
+	<link rel="stylesheet" type="text/css" href="/js/lib/jfastmenu/apycom.com-12-gray/menu.css" />
+	<style type="text/css">
+    * { margin:0;
+        padding:0; }
+    html { background:#333333; }
+    body {
+        margin:40px auto;
+        height:466px;
+        background:#454545;
+        overflow:hidden;
+    }
+    div#menu {
+		margin-left:120px;
+		position:relative;
+		top:25px;
+    }
+
+	</style>
+	<script language="javascript">
+	 $(document).ready(function(){
+	 	jQuery.jFastMenu("#menu");
+	 });
+	</script>
+  </head>
+<body>
+	<div id="menu">
+		<ul class="menu">
+			<li><a href="/vm/osstem.js.html" class="parent"><span>공통</span></a></li>
+			<li><a href="/vm/mustache.html" class="parent"><span>mustache.html</span></a></li>
+
+			<!--
+						#include("vm/inc/sample.vm")
+			##include("vm/inc/table.vm")
+			##include("vm/inc/organization.vm")
+			-->
+        </ul>
+	</div>	
+</body>
+</html>

@@ -1,0 +1,12 @@
+1. 작성페이지
+<script language="javascript" src="/ckeditor/ckeditor.js"></script>
+<textarea name="content" cols="150" rows="50"></textarea>
+<script language="javascript">CKEDITOR.replace('content');</script>
+
+2. 수정페이지
+<script language="javascript" src="/ckeditor/ckeditor.js"></script>
+<textarea id="content" name="content" cols="150" rows="50">$view.content</textarea>
+<script language="javascript">CKEDITOR.replace('content');</script>
+
+3. 수정프로세스에서 에디터내 값 가져오기
+var content = CKEDITOR.instances.content.getData();

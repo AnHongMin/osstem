@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+		<title>Menu</title>
+		<link rel="stylesheet" type="text/css" href="menu.css" />
+		<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+		<script type="text/javascript" src="jfastmenu.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+			
+				$.jFastMenu("#menu");
+			
+			});
+		</script>
+	</head>
+	<body>
+		<img alt="logo Jfastmenu" src="jfastmenu.png" />
+		<div id="menu">
+			<ul>
+				<li><a href="#">home</a></li>
+				<li>
+					<a href="#">Empresa</a>
+					<ul>
+						<li><a href="#">História</a></li>
+						<li>
+							<a href="#">Clientes</a>
+							<ul>
+								<li><a href="#">Públicos</a></li>
+								<li>
+									<a href="#">Privados</a>
+									<ul>
+										<li><a href="#">S.A.</a></li>
+										<li><a href="#">Ltda.</a></li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<a href="#">Parceiros</a>
+							<ul>
+								<li><a href="#">Nacionais</a></li>
+								<li><a href="#">Internacionais</a></li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<li><a href="#">Serviços</a></li>
+				<li><a href="#">Emails</a></li>
+				<li><a href="#">Contato</a></li>
+			</ul>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta http-equiv="cache-control" content="no-cache" />
+	<meta http-equiv="expires" content="0" />
+	<title> Sample </title>
+	<script language="javascript" src="/js/lib/jquery.jqGrid-4.3.2/js/jquery-1.7.2.min.js"></script>
+    <script language="javascript" src="/js/lib/jquery.jqGrid-4.3.2/js/i18n/grid.locale-en.js"></script>
+    <script language="javascript" src="/js/lib/jquery.jqGrid-4.3.2/js/jquery.jqGrid.min.js"></script>
+    
+    <link rel="stylesheet" type="text/css" media="screen" href="/js/lib/jquery.jqGrid-4.3.2/css/ui.jqgrid.css" /> 
+    <link rel="stylesheet" type="text/css" media="screen" href="/js/lib/jquery.jqGrid-4.3.2/themes/ui-lightness/jquery-ui-1.8.20.custom.css"/>
+    
+    <script language="javascript">
+	 $(document).ready(function(){
+	 	var id = "gridList";
+    	jQuery("#"+id).jqGrid({
+    		// 리스트 컨트롤러 
+        	url:"sample.do?cmd=gridUserList"
+				+"&searchField="+jQuery('#searchField').val()
+				+"&searchString="+encodeURIComponent(jQuery('#searchString').val()),
+			mtype:'POST',
+            datatype: "json",  
+    		jsonReader : {  
+    			root: "list", 
+    			records: function(obj){return obj.length;},
+    			repeatitems: false
+    		},  
+    		colNames:['사번', '성명', '연락처'],
+    		colModel:[
+    			{
+					name:'sabun',
+					index:'sabun', 
+					width:150, 
+					sortable:false
+				},
+    			{
+					name:'name',
+					index:'name', 
+					width:150, 
+					sortable:false
+				},
+    			{
+					name:'tel',
+					index:'tel', 
+					width:200, 
+					sortable:false
+				}
+       	 	],
+    
+			// records의 View여부
+			viewrecords: false,
+			// reload 여부
+    		loadonce:false,
+    		
+    		// 셀 선택시
+    		onCellSelect: function(rowid, iCol){      
+              var list = jQuery("#"+id).getRowData(rowid);
+    		  cellData(list);
+    		},
+			
+			// select box 설정
+			multiselect: true
+		});
+		
+		// 선택한 selectbox 값 가져오기
+		jQuery("#data").click( function() {
+			var s = jQuery("#"+id).jqGrid('getGridParam','selarrrow');
+ 		 	if(s.length<=0) {
+   				alert("사번을 선택해 주세요.");
+   				return;
+  			}else{
+   				s = ""+s;
+   				sArr = s.split(",");
+    			for(var i=0; i<sArr.length; i++){
+    				var ret = jQuery("#"+id).getRowData(sArr[i]);
+				    if(i == 0) selrow = "'"+ret.sabun+"'";
+    				else selrow += ",'"+ret.sabun+"'";
+   				}
+				alert(selrow);
+  			}
+		});
+    });
+    
+    // 셀 선택값 혹인
+    function cellData(list){
+    	alert(list.sabun);
+    }
+    </script>
+  </head>
+<body>
+<!-- 리스트 -->
+<table id="gridList" class="scroll"></table>
+<input type="hidden" name="searchField" id="searchField" value="$dto.searchField"/>
+<input type="hidden" name="searchString" id="searchString" value="$dto.searchString"/>
+<a href="javascript:void(0)" id="data">Get Selected id's</a>
+</body>
+</html>

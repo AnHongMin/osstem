@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+ 	<script language="javascript" src="/js/lib/head.js"></script>
+<script type="text/javascript">
+head.js(
+		"https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"
+		,"http://code.jquery.com/ui/1.9.2/jquery-ui.js"
+		,"/js/lib/jquery.json-2.4.js"
+		,"/js/lib/jquery.cookie.js"
+		,"/js/lib/osstem.js"
+		,function(){
+			var jsonObj = 	{
+			    userName : "Kim", 
+			    languages:[ '1', '3' ],
+			    ages: 30,
+			    hobby:  2,//['1', '2'],
+			    gender:1,
+				child : {  
+					name : 'child',
+		            age : 10
+				},
+			    description : "<h1>Good Man</h1>"
+			};
+			// 화면표시
+			osstem.data.setForm(jsonObj);
+		}
+);
+</script>    
+    
+</head>
+<body>
+<div id="getjson">
+</div>
+<input type="text" name="userName" data-name="userName" value="" />
+	<br/>
+	<input type="checkbox" data-name="languages" id="languages1" value="1"/>JavaScript
+	<input type="checkbox" data-name="languages" id="languages2" value="2"/>PHP
+	<input type="checkbox" data-name="languages" id="languages3" value="3"/>HTML
+	<br/>
+	<select data-name="ages" name="ages">
+	     <option value="10">10대</option>
+	     <option value="20">20대</option>
+	     <option value="30">30대</option>
+	</select>
+	<br/>
+	<select data-name="hobby" name="hobby"  multiple>
+	<option value="1">스키가 취미입니다.</option>
+	<option value="2">등산이 취미입니다.</option>
+	<option value="3">수영이 취미입니다.</option>
+	</select>
+	<br/>
+	<input type="radio" data-name="gender" name="gender" value="1" />남자
+	<input type="radio" data-name="gender" name="gender" value="2" />여자
+	<br/>
+	<input type="text" name="child.name"   data-name="child.name"  size="40">
+	<input type="text" name="child.age"  data-name="child.age"  size="40">
+	<br/>
+	<div id="description" data-name="description">
+	        여기에 HTML 정보
+	</div>
+</body>
+</html>

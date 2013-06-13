@@ -1,0 +1,28 @@
+<li><a href="#"><span>조직도</span></a>
+<div><ul>
+	<li><a href="#" class="parent"><span>Base</span></a>
+		<div><ul>
+		<li><a href="organization.do?cmd=tree&type=1"><span>부서</span></a></li>
+		<li><a href="organization.do?cmd=tree&type=2"><span>부서+사용자</span></a></li>
+		</ul></div>
+	</li>
+	<li><a href="#" class="parent"><span>single-selection</span></a>
+		<div><ul>
+		<li><a href="organization.do?cmd=tree&type=1&selectMode=1"><span>부서</span></a></li>
+		<li><a href="organization.do?cmd=tree&type=2&selectMode=1"><span>부서+사용자</span></a></li>
+		</ul></div>
+	</li>
+	<li><a href="#" class="parent"><span>multi-selection</span></a>
+		<div><ul>
+		<li><a href="organization.do?cmd=tree&type=1&selectMode=2"><span>부서</span></a></li>
+		<li><a href="organization.do?cmd=tree&type=2&selectMode=2"><span>부서+사용자</span></a></li>
+		</ul></div>
+	</li>
+	<li><a href="#" class="parent"><span>hierarchical multi-selection</span></a>
+		<div><ul>
+		<li><a href="organization.do?cmd=tree&type=1&selectMode=3"><span>부서</span></a></li>
+		<li><a href="organization.do?cmd=tree&type=2&selectMode=3"><span>부서+사용자</span></a></li>
+		</ul></div>
+	</li>
+</ul></div>
+</li>

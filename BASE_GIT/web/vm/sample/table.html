@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta http-equiv="cache-control" content="no-cache" />
+	<meta http-equiv="expires" content="0" />
+	<title> Sample </title>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+	<script language="javascript" src="http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
+    <script language="javascript">    
+ 	// 테이블의 템플릿
+    var markup = "<tr id=${index}>"
+				+"<td><INPUT name='test' type='text' value=${index}></td>"
+				+"<td><a href=\"javascript:sample.delRow('${index}')\">삭제</a></td>"
+				+"<td><a href=\"javascript:sample.addAfterRow('${index}')\">추가</a></td>"
+				+"</tr>";
+    var sample = {
+    	// tr의 고유 인덱스
+    	index: 0,
+		/**
+   		 * 테이블의 행추가
+   		 * @param tableSelector 테이블 셀렉터
+   		 */
+   		addRow : function(tableSelector){
+   			$(tableSelector).append(this.getRowHtml());	
+   		},
+ 		/**
+   		 * 테이블의 지정된 인덱스 위치의 다음 행추가
+   		 * @param id 테이블 tr의 지정된 위치
+   		 */
+   		addAfterRow : function(id){
+			$('#'+id).after(this.getRowHtml());	
+   		},
+   		// 테이블의 행의 템플릿
+   		getRowHtml : function(){
+   			this.index++;
+   			var data = [
+   			 	{"index":this.index}
+   			];  			
+			$.template( "sampleTemplate", markup);
+   			return $.tmpl( "sampleTemplate", data);
+   		},
+   		/**
+   		 * 테이블의 행 삭제
+   		 * @param index 테이블 tr의 지정된 위치
+   		 */
+   		delRow : function(index){
+   			$('#'+index).remove();
+   		}
+   	};
+    </script>    
+  </head>
+<body>
+<a href="javascript:void(0)" onclick="javascript:sample.addRow('#temp')">추가</a>
+<table id="temp"></table>
+</body>
+</html>

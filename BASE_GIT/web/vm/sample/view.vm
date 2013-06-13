@@ -1,0 +1,21 @@
+#include("sample/inc/header.vm")
+	
+<input type="hidden" name="pageNo" id="pageNo" value="$dto.pageNo"/>
+<input type="hidden" name="seq" id="seq" value="$view.seq"/> <br/>
+name : <input type="text" name="name" id="name" value="$view.name"/> <br/>
+<textarea id="content" name="content" cols="150" rows="50">$!view.content</textarea>
+파일리스트<br/>
+#if($fileList && $fileList.size()>0)
+#foreach($result in $fileList)
+	<a href="javascript:void(0)" onclick="Sample.Down('$result.file_sq')">$result.file_logical_name </a><br/>
+#end
+#else
+no data
+#end
+
+<a href="javascript:void(0)" onclick="Sample.Modify()">MODIFY</a>&nbsp;
+<a href="javascript:void(0)" onclick="Sample.next('$dto.pageNo')">LIST</a>
+	
+<script language="javascript">CKEDITOR.replace('content');</script>
+
+#include("sample/inc/footer.vm")

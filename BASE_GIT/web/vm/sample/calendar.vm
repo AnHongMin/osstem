@@ -1,0 +1,35 @@
+<!--<link rel="stylesheet" type="text/css" href="/js/lib/jquery-ui-1.8.21.custom/css/ui-darkness/jquery-ui-1.8.21.custom.css" />-->
+<!--<script type="text/javascript" src="/js/lib/jquery-ui-1.8.21.custom/js/jquery-ui-1.8.21.custom.min.js" charset="utf-8"></script>-->
+<link rel="stylesheet" type="text/css" href="/js/lib/jquery-ui-1.8.21.custom/development-bundle/themes/base/jquery.ui.all.css" />
+<script type="text/javascript" src="/js/lib/jquery-ui-1.8.21.custom/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="/js/lib/jquery-ui-1.8.21.custom/development-bundle/ui/jquery.ui.core.js"></script>
+<script type="text/javascript" src="/js/lib/jquery-ui-1.8.21.custom/development-bundle/ui/jquery.ui.widget.js"></script>
+<script type="text/javascript" src="/js/lib/jquery-ui-1.8.21.custom/development-bundle/ui/jquery.ui.datepicker.js"></script>
+<script type="text/javascript" src="/js/lib/jquery-ui-1.8.21.custom/development-bundle/ui/i18n/jquery.ui.datepicker-ko.js"></script>
+<style type="text/css">
+.date-sunday   .ui-state-default {  background-image: none; color: #FB0A0A;}
+.date-saturday .ui-state-default {  background-image: none; color: #0000FF;}
+.date-holiday0 .ui-state-default {  background-image: none; color: #FB0A0A;}
+</style>
+<script language="javascript" type="text/javascript">
+	//http://woosi.tistory.com/127 참조
+	var holidays = {
+		"0101":{type:0, title:"신정"},
+		"0301":{type:0, title:"삼일절"},
+		"0505":{type:0, title:"어린이날"},
+		"0606":{type:0, title:"현충일"},
+		"0815":{type:0, title:"광복절"},
+		"1003":{type:0, title:"개천절"},
+		"1225":{type:0, title:"크리스마스"}
+    };
+	$(document).ready(function() {
+		$("#fromDt").datepicker(jQuery.datepicker.regional['holiday']);
+      	$("#toDt").datepicker(jQuery.datepicker.regional['holiday']);
+		//이미지버튼 style적용
+      	$("img.ui-datepicker-trigger").attr("style","margin-left:5px; vertical-align:middle; cursor:pointer;");
+  	});
+</script>
+ 
+<input name="fromDt" type="text" id="fromDt" size="8" maxlength="8" title="시작일자"> ~ 
+<input name="toDt" type="text" id="toDt" size="8" maxlength="8" title="종료일자">
+	

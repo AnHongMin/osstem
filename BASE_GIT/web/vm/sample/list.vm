@@ -1,0 +1,21 @@
+#include("sample/inc/header.vm")
+
+<a href="javascript:void(0)" onclick="Sample.write()">WRITE / 등록</a><br/>
+
+<input type="hidden" name="pageNo" id="pageNo" value="$dto.pageNo"/>
+<input type="hidden" name="seq" id="seq"/>
+
+#if($list && $list.size()>0)
+#foreach($result in $list)
+	<a href="javascript:void(0)" onclick="Sample.view('$result.seq')">$!result.content  / $!result.name</a><br/>
+#end
+#else
+no data
+#end
+
+<div id="pagebox"></div>
+<script language="javascript">
+var page = Sample.show_page($dto.pageNo, $dto.totalPageCnt, $dto.pageBlock);
+jQuery('#pagebox').html(page);
+</script>
+#include("sample/inc/footer.vm")

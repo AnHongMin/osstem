@@ -1,0 +1,57 @@
+/**
+ * Sheet Style Menu Drop down for Jquery.
+ * Compatible with Internet Explorer, Firefox, Safari, Opera and Chrome.
+ * @author: Pablo Diego - pablodc@gmail.com
+ * @date: 14/01/2009
+ */
+ 
+#menu{
+	font-family:tahoma, verdana, arial;
+	font-size:11px;
+}
+#menu ul{
+	list-style:none;
+	margin:0px;
+	padding:0px;
+}
+#menu ul li{
+	float:left;
+	margin:0px;
+	padding:0px;
+	position:relative;
+}
+#menu ul li a{
+	background-color:#EFEFEF;
+	color:#000;
+	display:block;
+	margin:0px;
+	padding:10px;
+	text-decoration:none;
+}
+#menu ul li a:hover{
+	background-color:#E9E9E9;
+	color:#000;
+}
+#menu ul li ul{
+	position:absolute;
+	display:none;
+}
+#menu ul li ul li{
+	clear:left;
+}
+#menu ul li ul li a{
+	text-decoration:none;
+	width:120px;
+}
+#menu ul li ul li ul{
+	clear:left;
+	display:none;
+	left:140px;
+
+	/* Bengin CSS-HACK, for Microsoft Internet Explorer */
+	_left:120px;
+	/* End CSS-HACK */
+
+	position:absolute;
+	top:0px;
+}

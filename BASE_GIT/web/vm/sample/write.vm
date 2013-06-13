@@ -1,0 +1,16 @@
+#include("sample/inc/header.vm")
+
+<form id="sampleFrm" action="sample.do" method="post" enctype="multipart/form-data">
+<input type="hidden" name="cmd" id="cmd" value="doRegistFile"/> <br/>
+<input type="hidden" name="pageNo" id="pageNo" value="1"/>
+sabun : <input type="text" name="sabun" id="sabun"/> <br/>
+name : <input type="text" name="name" id="name"/> <br/>
+content : <textarea name="content" cols="150" rows="50"></textarea> <br/>
+file : <input type="file" name="attach[0]" id="attach"/> <br/> <input type="file" id="attach" name="attach[1]"/><br/>
+</form>
+<a href="javascript:void(0)" onclick="Sample.Regist()">Regist</a>&nbsp;
+<a href="javascript:void(0)" onclick="Sample.next('1')">LIST</a>
+
+<script language="javascript">CKEDITOR.replace('content');</script>
+
+#include("sample/inc/footer.vm")

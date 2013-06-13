@@ -1,0 +1,23 @@
+1. 공통 유틸 구현
+	- Class : com/osstem/common/
+	- Js : web/js/common/
+	
+2. 모뉼  구현 : Class
+	- com/osstem/{모뉼명}/
+	ex) com/osstem/sample/
+
+3. 모듈 구현 : Vm
+	- web/vm/{모듈명}/
+	ex) web/vm/sample/
+
+4. 모듈 구현 : Js
+	- web/js/{모듈명}/
+	ex) web/js/sample/
+	
+5. 모뉼 맵핑 설정
+	- com/osstem/config/dao/sample.xml
+	- com/osstem/config/impl/sample.xml
+	- com/osstem/config/springmvc/controller.xml
+	- com/osstem/config/springmvc/interceptor.xml
+	- com/osstem/config/sql-map-config.xml
+	- com/osstem/sqlmap/Sample.xml
