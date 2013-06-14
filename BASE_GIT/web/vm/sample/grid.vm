@@ -18,7 +18,7 @@
 	 	var id = "gridList";
     	jQuery("#"+id).jqGrid({
     		// 리스트 컨트롤러 
-        	url:"sample.do?cmd=gridList",
+        	url:"sample.do?method=gridList",
     		mtype:'POST',
             datatype: "json",  
     		jsonReader : {  
@@ -95,13 +95,13 @@
     		// 에디트할 컨트롤러
     		cellEdit:true,
     		cellsubmit:'remote',
-    		cellurl:'/sample.do?cmd=modifyGrid',  
+    		cellurl:'/sample.do?method=modifyGrid',  
     		beforeSubmitCell:function(rowid, cellname, value){
             	return {"id":rowid, "cellName":cellname, "cellValue":value}
     		},
 			
 			// 버튼 이벤트 처리 url
-			editurl:'/sample.do?cmd=doEditGrid'
+			editurl:'/sample.do?method=doEditGrid'
     	});
 		
 		// 버튼 ui 추가

@@ -3,7 +3,7 @@ var SampleService = {
 	getList: function () {
 		var url = "/sample.do";
 		var params = {};
-		params["cmd"] = 'list';
+		params["method"] = 'list';
 		params["pageNo"] = jQuery('#pageNo').val();
 		location.href = url + osstem.util.makeParams(params);
 	},
@@ -16,7 +16,7 @@ var SampleService = {
 	getView: function () {
 		var url = "/sample.do";
 		var params = {};
-		params["cmd"] = 'view';
+		params["method"] = 'view';
 		params["pageNo"] = jQuery('#pageNo').val();
 		params["seq"] = jQuery('#seq').val();
 		location.href = url + osstem.util.makeParams(params);
@@ -30,7 +30,7 @@ var SampleService = {
 	getWrite: function () {
 		var url = "/sample.do";
 		var params = {};
-		params["cmd"] = 'write';
+		params["method"] = 'write';
 		location.href = url + osstem.util.makeParams(params);
 	},
 	
@@ -54,7 +54,7 @@ var SampleService = {
 	doModify: function () {
 		var url = "/sample.do";
 		var params = {};
-		params["cmd"] = 'modify';
+		params["method"] = 'modify';
 		params["seq"] = jQuery('#seq').val();
 		params["name"] = jQuery('#name').val();
 		//params["content"] = jQuery('#content').val();
@@ -69,7 +69,7 @@ var SampleService = {
 					if(resData.code=="200"){
 						var url = "/sample.do";
 						var params = {};
-						params["cmd"] = 'list';
+						params["method"] = 'list';
 						params["pageNo"] = resData.dto.pageNo;
 						location.href = url + osstem.util.makeParams(params);
 					}else{
@@ -83,7 +83,7 @@ var SampleService = {
 	
 	// 파일 다운로드
 	getDown: function (file_sq) {
-		location.href = "/sample.do?cmd=down&file_sq="+file_sq;
+		location.href = "/sample.do?method=down&file_sq="+file_sq;
 	},
 	
 	// 그리드 등록 프로세스

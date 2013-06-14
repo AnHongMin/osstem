@@ -1,7 +1,7 @@
 #include("sample/inc/header.vm")
 
 <form id="sampleFrm" action="sample.do" method="post" enctype="multipart/form-data">
-<input type="hidden" name="cmd" id="cmd" value="doRegistFile"/> <br/>
+<input type="hidden" name="method" id="method" value="doRegistFile"/> <br/>
 <input type="hidden" name="pageNo" id="pageNo" value="1"/>
 sabun : <input type="text" name="sabun" id="sabun"/> <br/>
 name : <input type="text" name="name" id="name"/> <br/>

@@ -9,7 +9,7 @@ import com.osstem.common.util.Paging;
 
 public class SampleDto extends Paging{
 	
-	private String cmd;
+	private String method;
 	private String seq;
 	private String sabun;
 	private String name;
@@ -23,11 +23,11 @@ public class SampleDto extends Paging{
 	private String searchString;	// jqGrid 검색어
 	private String searchOper;		// jqGrid 커맨드
 	
-	public String getCmd() {
-		return cmd;
+	public String getMethod() {
+		return method;
 	}
-	public void setCmd(String cmd) {
-		this.cmd = cmd;
+	public void setMethod(String method) {
+		this.method = method;
 	}
 	public String getSeq() {
 		return seq;

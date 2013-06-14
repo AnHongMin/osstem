@@ -71,7 +71,7 @@
 			initAjax: {        
 				url: "organization.do",
 				data: { 
-					cmd: "treeAjax",
+					method: "treeAjax",
 					type : jQuery('#type').val(),
 					searchField : jQuery('#searchField').val(),
 					searchString : encodeURIComponent(jQuery('#searchString').val())					

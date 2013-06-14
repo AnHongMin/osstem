@@ -12,7 +12,7 @@
 	
 	<bean id="methodNameResolver" class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
 		<property name="paramName">
-			<value>cmd</value>
+			<value>method</value>
 		</property>
 		
 		<property name="defaultMethodName" >

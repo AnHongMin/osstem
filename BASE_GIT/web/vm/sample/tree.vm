@@ -22,7 +22,7 @@
     		onActivate: function(node) {
 				//alert('node.data.key : '+node.data.key);
 				//alert('node.data.title : '+node.data.title);
-				$("[name=contentFrame]").attr("src", "sample.do?cmd=gridUser"
+				$("[name=contentFrame]").attr("src", "sample.do?method=gridUser"
 				+"&searchField=ORG_CODE"
 				+"&searchString="+node.data.key);
     		},            
@@ -63,7 +63,7 @@
 			initAjax: {        
 				url: "sample.do",
 				data: { 
-					cmd: "treeAjax",
+					method: "treeAjax",
 					searchField : jQuery('#searchField').val(),
 					searchString : jQuery('#searchString').val()
 				}
@@ -159,7 +159,7 @@
         	$("#tree").dynatree("destroy"); 
             	InitTree();
 		}else{
-			$("[name=contentFrame]").attr("src", "sample.do?cmd=gridUser"
+			$("[name=contentFrame]").attr("src", "sample.do?method=gridUser"
 			+"&searchField=name&searchString=" 
 			+encodeURIComponent(jQuery('#searchString').val()));
 		}

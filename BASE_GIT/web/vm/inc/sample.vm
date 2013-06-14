@@ -1,21 +1,21 @@
 <li><a href="#" class="parent"><span>샘플 조직도</span></a>
 	<div><ul>
-    <li><a href="sample.do?cmd=tree"><span>dynatree,jqgrid</span></a></li>
-	<li><a href="sample.do?cmd=grid"><span>jqgrid</span></a></li>
-	<li><a href="sample.do?cmd=tree&selectMode=1"><span>single-selection</span></a></li>
-	<li><a href="sample.do?cmd=tree&selectMode=2"><span>multi-selection</span></a></li>
-	<li><a href="sample.do?cmd=tree&selectMode=3"><span>hierarchical multi-selection</span></a></li>
+    <li><a href="sample.do?method=tree"><span>dynatree,jqgrid</span></a></li>
+	<li><a href="sample.do?method=grid"><span>jqgrid</span></a></li>
+	<li><a href="sample.do?method=tree&selectMode=1"><span>single-selection</span></a></li>
+	<li><a href="sample.do?method=tree&selectMode=2"><span>multi-selection</span></a></li>
+	<li><a href="sample.do?method=tree&selectMode=3"><span>hierarchical multi-selection</span></a></li>
     </ul></div>
 </li>	
 <li><a href="#" class="parent"><span>게시판</span></a>
 	<div><ul>
     <li><a href="sample.do"><span>ckeditor</span></a></li>
-	<li><a href="sample.do?cmd=grid"><span>jqgrid</span></a></li>
+	<li><a href="sample.do?method=grid"><span>jqgrid</span></a></li>
     </ul></div>
 </li>
 <li><a href="#" class="parent"><span>달력</span></a>
 	<div><ul>
-	<li><a href="sample.do?cmd=calendar"><span>달력</span></a></li
+	<li><a href="sample.do?method=calendar"><span>달력</span></a></li
 	<li><a href="/js/lib/jquery-ui-1.8.21.custom/development-bundle/demos/datepicker/index.html"><span>datepicker</span></a></li>
     </ul></div>
 </li>

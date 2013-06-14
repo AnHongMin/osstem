@@ -18,7 +18,7 @@
 	 	var id = "gridList";
     	jQuery("#"+id).jqGrid({
     		// 리스트 컨트롤러 
-        	url:"sample.do?cmd=gridUserList"
+        	url:"sample.do?method=gridUserList"
 				+"&searchField="+jQuery('#searchField').val()
 				+"&searchString="+encodeURIComponent(jQuery('#searchString').val()),
 			mtype:'POST',
