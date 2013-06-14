@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script language="javascript" src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+    <script language="javascript" src="/js/lib/jquery.json-2.4.js"></script>
+    <script language="javascript" src="/js/lib/jquery.cookie.js"></script>
+    <script language="javascript" src="/js/lib/osstem.js"></script>
+
+<style type="text/css">
+.no-close .ui-dialog-titlebar-close {  display: none;}
+</style>
+<script type="text/javascript">
+$(function()  {
+	
+	//String Section
+	console.log('osstem.string.lpad : '+osstem.string.lpad('1111111', 10, '0'));
+	console.log('osstem.string.hasText : '+osstem.string.hasText(''));
+	console.log('osstem.string.hasText : '+osstem.string.hasText('1'));
+   
+	var str = "   가 나 다";
+	console.log('osstem.string.trim before : '+str.length);
+	console.log('osstem.string.trim : '+osstem.string.trim(str) + " : "+osstem.string.trim(str).length);
+   
+	console.log('osstem.string.nvls : '+osstem.string.nvls(null));
+	console.log('osstem.string.nvls : '+osstem.string.nvls('1'));
+   
+	var decodeString = '1,kk,2,ll,3,aa';
+	console.log('osstem.string.decode : '+osstem.string.decode('2', decodeString));
+	
+	var str = '가나다라';
+	var findStr = '다';
+	var replaceStr = '라';
+	console.log('osstem.string.replace : '+osstem.string.replace(str, findStr, replaceStr));
+
+	var str = '가나다라';
+	console.log('osstem.string.right : '+osstem.string.right(str, 1));
+	
+	var str = '가나다라';
+	console.log('osstem.string.left : '+osstem.string.left(str, 2));
+
+	var str = '20130115';
+	console.log('osstem.string.formatDate : '+osstem.string.formatDate(str, '-'));
+
+	var str = '8111121234567';
+	console.log('osstem.string.formatSsn : '+osstem.string.formatSsn(str));
+	
+	var str = '430016';
+	console.log('osstem.string.formatZipCode : '+osstem.string.formatZipCode(str));
+	
+	var str = '123456789';
+	console.log('osstem.string.formatComma : '+osstem.string.formatComma(str));
+	
+	var str = '01072247914';
+	console.log('osstem.string.formatTelNo : '+osstem.string.formatTelNo(str));
+
+	var str = '10000';
+	console.log('osstem.string.isCurrency : '+osstem.string.isCurrency(str));
+	
+	console.log('osstem.string.isInteger : '+osstem.string.isInteger('100000'));
+	console.log('osstem.string.isInteger : '+osstem.string.isInteger('abc'));
+
+	console.log('osstem.string.isNumberDash : '+osstem.string.isNumberDash('123a-'));
+	console.log('osstem.string.isNumberDash : '+osstem.string.isNumberDash('123-'));
+	
+	console.log('osstem.string.getBytesLength : '+osstem.string.getBytesLength('123-'));
+	console.log('osstem.string.isMail : '+osstem.string.isMail('Myungok.suh@osstem.com'));
+	var html = "<html>"; 
+	html += "<head>";
+	html += "<link href=\"http://open.osstem.com/css/open.css\" rel=\"stylesheet\" type=\"text/css\" />";
+	html += "</head>";
+	html += "<body leftmargin=\"0\" topmargin=\"0\" marginwidth=\"0\" marginheight=\"0\" style=\"margin-left:0px\">";
+	html += "<table border=0 cellpadding=0 cellspacing=0 width=80 height=18>";
+	html += "<tr>";
+	html += "<td width=\"80\" bgcolor=\"#E5EFF3\"><span class=\"number\">0</span>&nbsp;/&nbsp;20";
+	html += "</tr>";
+	html += "</table>";
+	html += "<a href=\"#\">test</a>";
+	html += "</body>"; 
+	html += "</html>"; 
+	console.log('osstem.string.removeHTML : '+osstem.string.removeHTML(html));
+	console.log('osstem.string.removeAnchor : '+osstem.string.removeAnchor(html));
+}); 	
+</script>        
+</head>
+<body>
+</body>
+</html>

@@ -35,11 +35,10 @@
 <body>
 	<div id="menu">
 		<ul class="menu">
-			<li><a href="/vm/osstem.js.html" class="parent"><span>공통</span></a></li>
-			<li><a href="/vm/mustache.html" class="parent"><span>mustache.html</span></a></li>
-
+			#include("vm/inc/osstemJs.vm")
 			<!--
-						#include("vm/inc/sample.vm")
+			<li><a href="/vm/mustache.html" class="parent"><span>mustache.html</span></a></li>
+			#include("vm/inc/sample.vm")
 			##include("vm/inc/table.vm")
 			##include("vm/inc/organization.vm")
 			-->

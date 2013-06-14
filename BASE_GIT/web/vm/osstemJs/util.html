@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script language="javascript" src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+    <script language="javascript" src="/js/lib/jquery.json-2.4.js"></script>
+    <script language="javascript" src="/js/lib/jquery.cookie.js"></script>
+    <script language="javascript" src="/js/lib/osstem.js"></script>
+
+<style type="text/css">
+.no-close .ui-dialog-titlebar-close {  display: none;}
+</style>
+<script type="text/javascript">
+$(function()  {
+	// Util Section
+	
+	console.log('osstem.util.min : '+osstem.util.min(2,4));
+	console.log('osstem.util.floor : '+osstem.util.floor(5.92345,2));
+	console.log('osstem.util.decToDigit : '+osstem.util.decToDigit(2));
+	console.log('osstem.util.isEmpty : '+osstem.util.isEmpty(new Array()));
+	console.log('osstem.util.isEmpty : '+osstem.util.isEmpty(new Array().push('1')));
+	console.log('osstem.util.getDateString : '+osstem.util.getDateString(new Date(),'-'));
+	var temp = osstem.util.getUrlVars();
+	for (var j in temp) {
+		console.log(j+":"+temp[j]);		
+	}
+	var params = {};
+	params["param_one"] = "1";
+	params["param_two"] = "2";
+	console.log(osstem.util.makeParams(params));
+}); 
+</script>    
+    
+</head>
+<body>
+</body>
+</html>

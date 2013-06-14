@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script language="javascript" src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+    <script language="javascript" src="/js/lib/jquery.json-2.4.js"></script>
+    <script language="javascript" src="/js/lib/jquery.cookie.js"></script>
+    <script language="javascript" src="/js/lib/osstem.js"></script>
+
+<style type="text/css">
+.no-close .ui-dialog-titlebar-close {  display: none;}
+</style>
+<script type="text/javascript">
+$(function()  {
+	/*
+	UI Section
+	
+	<input type="button"  id="showDialog" value="Show Modal Dialog" />
+	<div id="dialog-modal" style="border:1px solid #cccccc;display: none;">
+	   <p>A modal dialog prevents the user from interacting with the rest of the page until it is closed.</p>
+	</div>
+	function showDialog() {
+// 		$( "#dialog-modal").dialog({
+// 	        height: 140,
+// 	        modal: true,
+// 	        show: "slide",
+// 	        title : "에러!!!"
+// 	    });
+		osstem.ui.showModal({
+	    	selector: "#dialog-modal",
+	        height: 140,
+	        modal: false,
+	        show: "slide",
+	        title : "에러!!!"
+	    });
+	};
+	$("#showDialog").click(showDialog);
+	
+	<div id="layer1" style="border:1px solid #cccccc;display: none;"></div>
+	<input type="text" id="test" value="" />
+	$("#test").keyup(function() {
+		var text = $(this).val();
+		console.log(text);	
+		$("#layer1").html(text);
+   	 	osstem.ui.showLayer("#layer1", this);
+	});
+	
+	<div id="layer1" style="border:1px solid #cccccc;">1</div>
+	<div id="layer2" style="border:1px solid #cccccc;">2</div>
+	<div id="layer3" style="border:1px solid #cccccc;">3</div>
+	var temp1 = osstem.ui.getBounds("#layer1");
+	for (var i in temp1) {
+		console.log(i+":"+temp1[i]);		
+	}
+	var temp2 = osstem.ui.getBounds("#layer2");
+	for (var i in temp2) {
+		console.log(i+":"+temp2[i]);		
+	}
+	var temp3 = osstem.ui.getBounds("#layer3");
+	for (var i in temp3) {
+		console.log(i+":"+temp3[i]);
+	}
+	*/
+	
+	// 익명함수 호출 예제
+	//osstem.hello.aa()
+	
+	/*
+	for (var i in osstem) {
+		var temp = osstem[i];
+		if(temp){
+			for (var j in temp) {
+				console.log("osstem."+i+"."+j+":"+temp[j]);		
+			}
+		}else{
+			console.log(i+":"+osstem[i]);	
+		}
+	}
+	*/
+}); 
+	
+/*
+jQuery(window).bind('beforeunload', function() { 
+		alert('닫기'); 
+});
+*/
+
+</script>
+</head>
+<body>
+</body>
+</html>

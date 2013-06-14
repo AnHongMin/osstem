@@ -966,35 +966,58 @@
             },
             /** 
              * select box 순서를 변경합니다. 
-             * @param selector jQuery selector
-             * @parma direction 
+             * @param elementId
+             * @parma direction
              */ 
-            moveSelect : function(selector, direction) {
-            	var optionObjects = [];
-        		var optionObjectsIndex = [];
-        		$(selector+" option").each(function(){
-					optionObjects.push($(this));
-        			optionObjectsIndex.push($(this).index());
-        		});
-        		if(direction == "up"){				
-        			$(selector+" option:selected").each(function(){
-        				var idx = $(selector+" option").index(this);
-        				var newPos = $(selector+" option").index(this) - 1;
-        				if(newPos > -1){
-        					$(selector+" option").eq(newPos).before(optionObjects[idx]);
-        				}
-        			});
-        		}else if(direction == "down"){
-        			for(var i=optionObjects.length-1; i>=0; i--){
-        				if(optionObjectsIndex[i]+1 == optionObjectsIndex.length){
-        					continue;
-        				}else{
-        					if($(selector+" option").eq([optionObjectsIndex[i]]).attr("selected")=="selected"){
-        						$(selector+" option").eq([optionObjectsIndex[i]+1]).after(optionObjects[i]);
-        					}
-        				}
-        			}
-        		}
+            moveSelect : function(elementId, direction) {
+            	var element = document.getElementById(elementId);  // Multiple Select Element
+                var selIndex = element.selectedIndex;              // Selected Index
+                var elementLength = element.options.length;        // Select Element Item Length
+                var selText = element.options[selIndex].text;      // Selected Item Text
+                var selValue = element.options[selIndex].value;    // Selected Item Value
+                if(selIndex < 0) {
+                    return;
+                }
+                if(direction == "top") {  // 최상위로 이동
+                    var index = selIndex;
+                    while(index > 0) {
+                        element.options[index].text = element.options[index-1].text;
+                        element.options[index].value = element.options[index-1].value;
+                        index--;
+                    }
+                    element.options[0].text = selText;
+                    element.options[0].value = selValue;
+                    element.selectedIndex = 0;
+                } else if(direction == "up") {  // 위로 이동
+                    if(selIndex-1 < 0) return;
+                    var oldText = element.options[selIndex-1].text;
+                    var oldValue = element.options[selIndex-1].value;
+                    element.options[selIndex-1].text = selText;
+                    element.options[selIndex-1].value = selValue;
+                    element.options[selIndex].text = oldText;
+                    element.options[selIndex].value = oldValue;
+                    element.selectedIndex = selIndex-1;
+                } else if(direction == "down") {  // 아래로 이동
+                    if(selIndex+2 > elementLength) return;
+                    var oldText = element.options[selIndex+1].text;
+                    var oldValue = element.options[selIndex+1].value;
+                    element.options[selIndex+1].text = selText;
+                    element.options[selIndex+1].value = selValue;
+                    element.options[selIndex].text = oldText;
+                    element.options[selIndex].value = oldValue;
+                    element.selectedIndex = selIndex+1;
+                } else if(direction == "bottom") {  // 최하위로 이동
+                    var index = selIndex;
+                    while(index < elementLength-1) {
+                        element.options[index].text = element.options[index+1].text;
+                        element.options[index].value = element.options[index+1].value;
+                        index++;
+                    }
+                    element.options[element.options.length-1].text = selText;
+                    element.options[element.options.length-1].value = selValue;
+                    element.selectedIndex = element.options.length-1;
+                }
+                else return;
             },
             /**
         	 * selectbox의 option 모두 제거합니다. 
@@ -1014,16 +1037,12 @@
         	},
         	/**
         	 * 첫번째 checkbox 체크여부를 하위 checkbox에 적용 
-        	 * @param {string} firstChkNm 첫번째 checkbox name
-        	 * @param {string} id_array 하위 checkbox name
+        	 * @param {string} selector_First 첫번째 checkbox
+        	 * @param {string} selector_Array 하위 checkbox
         	 */
-        	checkBoxCheckAll : function(firstChkNm,chkNm_Array){
-        		var flag = $("input[name="+firstChkNm+"]").attr("checked");
-        		if(flag==undefined){
-        			flag = false;
-        		}
-    			$("input[name="+chkNm_Array+"]").each(function(){
-    				$(this).attr("checked",flag);
+        	checkBoxCheckAll : function(selector_First,selector_Array){
+    			$(selector_Array).each(function(){
+    				$(this).prop('checked',$(selector_First).prop("checked"));
     			});
         	},
             /** dummy function */

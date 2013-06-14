@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script language="javascript" src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+    <script language="javascript" src="/js/lib/jquery.json-2.4.js"></script>
+    <script language="javascript" src="/js/lib/jquery.cookie.js"></script>
+    <script language="javascript" src="/js/lib/osstem.js"></script>
+
+<style type="text/css">
+.no-close .ui-dialog-titlebar-close {  display: none;}
+</style>
+<script type="text/javascript">
+$(function()  {
+	// JSON Section & HTTP Section
+	var url = "/organization.do";
+	var params = {};
+	params["method"] = 'treeAjax';
+	params["type"] = '1';
+	console.log(osstem.json.toQueryString(params));
+	osstem.http.ajax(
+		{ 
+			url : url,
+			target : document.body,
+			data   : params,
+			success : function(resData, statusText){
+				console.log(osstem.json.getJSONString(resData));
+			},
+			dataType : "json"    
+		}
+	);
+	
+	osstem.http.setCookie('test','1');
+	console.log('set osstem.http.getCookie : '+osstem.http.getCookie('test'));
+	osstem.http.removeCookie('test');
+	console.log('remove osstem.http.getCookie : '+osstem.http.getCookie('test'));
+}); 
+</script>    
+    
+</head>
+<body>
+</body>
+</html>
