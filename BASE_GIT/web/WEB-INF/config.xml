@@ -1,6 +1,6 @@
 <config>
 	<enabled>true</enabled>
-	<baseDir>D://Developer//Workspace//BASE_TOMCAT//web//userfiles</baseDir>
+	<baseDir>D://Developer//Workspace//BASE_GIT//web//userfiles</baseDir>
 	<baseURL>/userfiles/</baseURL>
 	<licenseKey></licenseKey>
 	<licenseName></licenseName>

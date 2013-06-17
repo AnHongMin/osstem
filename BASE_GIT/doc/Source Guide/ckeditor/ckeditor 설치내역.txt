@@ -41,7 +41,7 @@
 
 2. WEB-INF\config.xml 추가
 	- 경로설정   
-	<baseDir>D://Developer//Workspace//BASE_TOMCAT//web//userfiles</baseDir>
+	<baseDir>D://Developer//Workspace//BASE_GIT//web//userfiles</baseDir>
 	<baseURL>/userfiles/</baseURL>
 
 3. WEB-INF\lib\에 jar 추가
