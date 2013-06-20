@@ -21,6 +21,7 @@ import com.osstem.common.Constants;
 import com.osstem.common.user.SessionUtil;
 import com.osstem.common.user.UserDto;
 import com.osstem.common.util.DispatchAction;
+import com.osstem.common.util.RequestPrint;
 import com.osstem.common.util.json.JSONException;
 import com.osstem.common.util.json.JSONUtil;
 import com.osstem.sample.service.DeptDto;
@@ -175,6 +176,7 @@ public class SampleController extends DispatchAction{
 	 * @throws Exception
 	 */
 	public ModelAndView gridList(HttpServletRequest req, HttpServletResponse res, @ModelAttribute("dto") SampleDto dto) throws Exception{
+		RequestPrint.printRequestInfo(req);
 		// 현재 페이지
 		String page = req.getParameter("page");
 		if(page!=null){
