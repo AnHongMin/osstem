@@ -36,8 +36,8 @@
 	<div id="menu">
 		<ul class="menu">
 			#include("vm/inc/osstemJs.vm")
-			#include("vm/inc/sample.vm")
 			<!--
+			#include("vm/inc/sample.vm")			
 			<li><a href="/vm/mustache.html" class="parent"><span>mustache.html</span></a></li>
 			
 			##include("vm/inc/table.vm")
