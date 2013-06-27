@@ -18,8 +18,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.osstem.common.Constants;
-import com.osstem.common.user.SessionUtil;
-import com.osstem.common.user.UserDto;
 import com.osstem.common.util.DispatchAction;
 import com.osstem.common.util.RequestPrint;
 import com.osstem.common.util.json.JSONException;
