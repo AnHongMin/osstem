@@ -35,6 +35,7 @@
 <body>
 	<div id="menu">
 		<ul class="menu">
+			#include("vm/inc/cheditor.vm")
 			#include("vm/inc/osstemJs.vm")
 			<!--
 			#include("vm/inc/sample.vm")			

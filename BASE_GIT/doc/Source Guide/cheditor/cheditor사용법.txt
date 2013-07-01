@@ -1,0 +1,30 @@
+안녕하십니까? CHSOFT입니다.
+저희 제품을 구입하여 주셔서 감사합니다. 
+
+다음 URL을 클릭하여 파일을 다운로드하십시오.
+--------------------------------------------------
+다운로드 URL: http://www.chcode.com/cheditorLicensed/
+Username: yunsu.jeong@osstem.com
+Password: 31483 
+
+--------------------------------------------------
+기본 사용법은 포함되어 있는 예제 파일과 http://www.chcode.com의 cheditor 웹 페이지를 참고하여 주십시오. 
+
+문제점이나 개선 사항이 있으시면 support@chcode.com 메일이나 '기술지원 포럼'에 글을 남겨 주십시오. 
+
+감사합니다. 
+CHSOFT.
+--------------------------------------------------
+http://www.chcode.com
+
+
+[로컬 설치내역]
+- 환경설정 파일 수정
+upload.jsp
+
+ex)
+SAVE_DIR = "D:/Developer/GIT/osstem/BASE_GIT/web/cheditor/attach/";
+SAVE_URL = "http://localhost/cheditor/attach/";
+
+- jar 파일 추가
+cos.jar, fileupload.jar, struts.jar, uploadbean.jar
