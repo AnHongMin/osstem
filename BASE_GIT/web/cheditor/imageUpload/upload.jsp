@@ -1,7 +1,10 @@
 <%@ page import="java.io.*" %>
+<%@ page import="com.osstem.common.util.UtilProperties" %>
 <%
-String SAVE_DIR = "D:/Developer/GIT/osstem/BASE_GIT/web/cheditor/attach/";
-String SAVE_URL = request.getScheme() +"://"+ request.getServerName() + (80==request.getServerPort() ? "" : ":" + request.getServerPort())+"/cheditor/attach/";
+UtilProperties.setConfFilePath("D:/Developer/GIT/osstem/BASE_GIT/src/com/osstem/config/config.properties");
+UtilProperties prop = UtilProperties.getInstance();
+String SAVE_DIR = prop.getProperty("cheditor.upload_path");
+String SAVE_URL = request.getScheme() +"://"+ request.getServerName() + (80==request.getServerPort() ? "" : ":" + request.getServerPort())+prop.getProperty("cheditor.upload_url");
 
 String contentType = request.getContentType();
 
