@@ -29,6 +29,21 @@ $(function()  {
 	params["param_one"] = "1";
 	params["param_two"] = "2";
 	console.log(osstem.util.makeParams(params));
+	
+	console.log("delete before : "+params.hasOwnProperty("param_one"));
+	delete params.param_one;
+	console.log(osstem.util.makeParams(params));
+	console.log("delete after : "+params.hasOwnProperty("param_one"));
+	
+	console.log("param_one" in params);// "멤버명" in 객체; 연산자의 좌측에 놓인 속성이 객체에 포함돼 있는가를 확인
+	console.log("-------------");// 배열의 인덱스가 존재하는지 여부
+
+	var nyArray = new Array("myCar", null, undefined);
+	console.log(0 in nyArray);// 배열의 인덱스가 존재하는지 여부
+	console.log(1 in nyArray);
+	console.log(2 in nyArray);
+	console.log(3 in nyArray);
+	
 }); 
 </script>    
     
