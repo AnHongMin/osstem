@@ -7,6 +7,8 @@ import java.io.UnsupportedEncodingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
 
 /**
@@ -80,4 +82,10 @@ public class DispatchAction extends MultiActionController{
 		ajaxResponse(request, response, msg, "UTF-8", "application/x-json;charset=UTF-8");
 	}
 
+	
+	protected ApplicationContext context;
+	public DispatchAction(){
+		String[] config = new String[]{"com/osstem/config/applicationContext.xml"};
+		context = new ClassPathXmlApplicationContext(config);
+	}
 }

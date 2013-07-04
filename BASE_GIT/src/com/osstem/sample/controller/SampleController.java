@@ -38,7 +38,6 @@ import com.osstem.sample.service.SampleService;
  */
 
 @Controller
-//public class SampleController extends ApplicationContextActionS{
 public class SampleController extends DispatchAction{
 	/** logger. */
 	private Log logger = LogFactory.getLog(this.getClass());
