@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<script type="text/javascript"
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script language="javascript"
+	src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+<style type="text/css">
+.no-close .ui-dialog-titlebar-close {
+	display: none;
+}
+</style>
+<script type="text/javascript">
+
+	var countDown ={
+		yr : "",
+		mo : "",
+		da : "",
+		hr : "",
+		min : "",
+		sec : "",
+		montharray : new Array("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"),
+		setcountdown : function(theyear, themonth, theday, thehour, themin, thesec) {
+			if (theyear < 1900) {
+				theyear = 1900 + theyear;
+			}
+
+			this.yr = theyear;
+			this.mo = themonth;
+			this.da = theday;
+			this.hr = thehour;
+			this.min = themin;
+			this.sec = thesec
+		},
+		
+		init : function(min){
+			var date = new Date();
+			date.setMinutes(date.getMinutes() + min);
+			// 1: 카운트다운할 날짜와 시간을 입력 하세요 (년, 월, 일, 시(0=자정,23=밤11시), 분, 초
+			countDown.setcountdown(date.getYear(), date.getMonth() + 1, date.getDate(), date.getHours(), date.getMinutes(), 00);
+			countDown.run();
+		},
+		
+		run : function() {
+			var today = new Date();
+			var todayy = today.getYear();
+
+			if (todayy < 1000) {
+				todayy += 1900;
+			}
+
+			var todaym = today.getMonth();
+			var todayd = today.getDate();
+			var todayh = today.getHours();
+			var todaymin = today.getMinutes();
+			var todaysec = today.getSeconds();
+			var todaystring = countDown.montharray[todaym] + " " + todayd + ", " + todayy + " " + todayh + ":" + todaymin + ":" + todaysec;
+			futurestring = countDown.montharray[countDown.mo - 1] + " " + countDown.da + ", " + countDown.yr + " " + countDown.hr + ":" + countDown.min + ":" + countDown.sec;
+			dd = Date.parse(futurestring) - Date.parse(todaystring);
+
+			dday = Math.floor(dd / (60 * 60 * 1000 * 24) * 1);
+			dhour = Math.floor((dd % (60 * 60 * 1000 * 24)) / (60 * 60 * 1000) * 1);
+			dmin = Math.floor(((dd % (60 * 60 * 1000 * 24)) % (60 * 60 * 1000)) / (60 * 1000) * 1);
+			dsec = Math.floor((((dd % (60 * 60 * 1000 * 24)) % (60 * 60 * 1000)) % (60 * 1000)) / 1000 * 1);
+
+			console.log('dday : ' + dday +'\t'+ 'dhour : ' + dhour+'\t'+'dmin : ' + dmin+'\t'+'dsec : ' + dsec);
+			if (dday <= 0 && dhour <= 0 && dmin <= 0 && dsec <= 0 && todayd == da) {
+				$('#countdownnsmain').html("로그인 접속시간이 만료(세션 종료) 되었습니다");
+				alert("로그인 접속시간이 종료되었습니다.\n현재 작성중인 글은 완료처리 하시거나\n메모장,WORD에 복사하여 저장한 후 다시 접속하셔서 작업을 해주시기 바랍니다\n\n주의)지금 저장할 경우\n작성하신 글이 저장되지 않습니다.");
+			} else if (dday <= 0 && dhour <= 0 && dmin <= 5 && dsec <= 0 && todayd == da) {
+				alert("로그인 접속시간이 5분후 종료됩니다.\n현재 작성중인 글은 완료처리 하시거나\n메모장,WORD에 복사하여 저장하시기 바랍니다\n\n주의)세션이 종료된 후 저장할 경우\n작성하신 글은 저장되지 않습니다.");
+			} else if (dday <= -1) {
+				$('#countdownnsmain').html("Occasion already passed! ");
+				return;
+			} else {
+				$('#countdownnsmain').html(
+						"자동 로그아웃"
+						+ " 까지 <b>"
+						+ dmin
+						+ "</b>분 <b>"
+						+ dsec
+						+ "</b>초 남았습니다. ");
+			}
+			setTimeout("countDown.run()", 1000);
+		}		
+	};
+	countDown.init(42);
+</script>
+
+</head>
+<body>
+	<div id="countdownnsmain"></div>
+</body>
+</html>
