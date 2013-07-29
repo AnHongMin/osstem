@@ -13,9 +13,7 @@
 </style>
 <script type="text/javascript">
 	var countDown ={
-		bean ={
-		    divLy:'#countdownnsmain'		
-		},
+		divLy:"",		
 		yr : "",
 		mo : "",
 		da : "",
@@ -66,21 +64,26 @@
 			dmin = Math.floor(((dd % (60 * 60 * 1000 * 24)) % (60 * 60 * 1000)) / (60 * 1000) * 1);
 			dsec = Math.floor((((dd % (60 * 60 * 1000 * 24)) % (60 * 60 * 1000)) % (60 * 1000)) / 1000 * 1);
 
-			if (dday <= 0 && dhour <= 0 && dmin <= 0 && dsec <= 0 && todayd == da) {
-				$(countDown.bean.divLy).html("로그인 접속시간이 만료(세션 종료) 되었습니다");
+			if (dday <= 0 && dhour <= 0 && dmin <= 0 && dsec <= 0 && todayd == countDown.da) {
+				$(countDown.divLy).html("로그인 접속시간이 만료(세션 종료) 되었습니다");
 				alert("로그인 접속시간이 종료되었습니다.\n현재 작성중인 글은 완료처리 하시거나\n메모장,WORD에 복사하여 저장한 후 다시 접속하셔서 작업을 해주시기 바랍니다\n\n주의)지금 저장할 경우\n작성하신 글이 저장되지 않습니다.");
-			} else if (dday <= 0 && dhour <= 0 && dmin <= 5 && dsec <= 0 && todayd == da) {
+				return;
+			} else if (dday <= 0 && dhour <= 0 && dmin <= 5 && dsec <= 0 && todayd == countDown.da) {
 				alert("로그인 접속시간이 5분후 종료됩니다.\n현재 작성중인 글은 완료처리 하시거나\n메모장,WORD에 복사하여 저장하시기 바랍니다\n\n주의)세션이 종료된 후 저장할 경우\n작성하신 글은 저장되지 않습니다.");
 			} else if (dday <= -1) {
-				$(countDown.bean.divLy).html("Occasion already passed! ");
+				$(countDown.divLy).html("Occasion already passed! ");
 				return;
 			} else {
-				$(countDown.bean.divLy).html("자동 로그아웃 까지 <b>"+ dmin+ "</b>분 <b>"+ dsec+ "</b>초 남았습니다. ");
+				$(countDown.divLy).html("자동 로그아웃 까지 <b>"+ dmin+ "</b>분 <b>"+ dsec+ "</b>초 남았습니다. ");
 			}
 			setTimeout("countDown.run()", 1000);
 		}
 	};
-	countDown.init(42);
+	var bean ={
+		 divLy:'#countdownnsmain'
+	};
+	$.extend(countDown, bean);
+	countDown.init(6);
 </script>
 
 </head>
