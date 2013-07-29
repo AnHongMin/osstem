@@ -13,7 +13,8 @@
 </style>
 <script type="text/javascript">
 	var countDown ={
-		divLy:"",		
+		divLy:"",
+		minDiff:0,
 		yr : "",
 		mo : "",
 		da : "",
@@ -34,9 +35,9 @@
 			this.sec = thesec
 		},
 		
-		init : function(min){
+		init : function(){
 			var date = new Date();
-			date.setMinutes(date.getMinutes() + min);
+			date.setMinutes(date.getMinutes() + countDown.minDiff);
 			// 1: 카운트다운할 날짜와 시간을 입력 하세요 (년, 월, 일, 시(0=자정,23=밤11시), 분, 초
 			countDown.setcountdown(date.getYear(), date.getMonth() + 1, date.getDate(), date.getHours(), date.getMinutes(), 00);
 			countDown.run();
@@ -81,9 +82,10 @@
 	};
 	var bean ={
 		 divLy:'#countdownnsmain'
+		 ,minDiff:5
 	};
 	$.extend(countDown, bean);
-	countDown.init(6);
+	countDown.init();
 </script>
 
 </head>
