@@ -27,9 +27,41 @@
 
 	</style>
 	<script language="javascript">
-	 $(document).ready(function(){
-	 	jQuery.jFastMenu("#menu");
-	 });
+	$(document).ready(function(){
+		jQuery.jFastMenu("#menu");
+	});
+	
+	// 오른쪽마우스 막기
+    document.oncontextmenu = function(e) {
+    	if(e) {
+      		e.preventDefault();
+     	}
+     	else {
+      		event.keyCode = 0;
+           	event.returnValue = false;
+        }
+    }
+	
+	// 새로고침, 뒤로가기 막기
+	document.onkeydown = function(e) {
+ 		key = (e) ? e.keyCode : event.keyCode;
+ 		ctrl = (e) ? e.ctrlKey  : event.ctrlKey;
+ 
+		// ctrl : 컨트롤 키 누름여부
+		// 78 : N -> ctrl+N : 새창띄우기
+		// 82 : R -> ctrl+R : 새로고침
+		// 116 : F5
+		// 112~123 : F1~F12		
+		if( (ctrl == true && (key == 78 || key == 82)) || key==116) {
+    		if(e) {
+      			e.preventDefault();
+    		} 
+    		else {
+           		event.keyCode = 0;
+           		event.returnValue = false;
+    		}
+  		}
+	}
 	</script>
   </head>
 <body>
