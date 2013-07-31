@@ -96,9 +96,7 @@ public class DateUtil {
 	 * @return
 	 */
 	public static String getYmdaddMonth(String ymd, int amount) {
-		return DateFormatUtils.format(
-				DateUtils.addMonths(dateStringToDate(ymd), amount),
-				"yyyy-MM-dd").replaceAll("-", "");
+		return DateFormatUtils.format(DateUtils.addMonths(dateStringToDate(ymd), amount), "yyyy-MM-dd").replaceAll("-", "");
 	}
 
 	/**
@@ -249,8 +247,7 @@ public class DateUtil {
 	 * @throws Exception
 	 */
 	public static String strGetStartMonthDate(String cur_date) throws Exception {
-		Date date = DateUtils.truncate(dateStringToDate(cur_date),
-				Calendar.MONTH);
+		Date date = DateUtils.truncate(dateStringToDate(cur_date), Calendar.MONTH);
 		return strDateToString(date);
 	}
 
@@ -263,11 +260,8 @@ public class DateUtil {
 	 * @throws Exception
 	 */
 	public static String strGetEndMonthDate(String cur_date) throws Exception {
-		Date date = DateUtils.truncate(dateStringToDate(cur_date),
-				Calendar.MONTH);
-		return strDateToString(DateUtils.add(
-				DateUtils.add(date, Calendar.MONTH, 1), Calendar.DAY_OF_MONTH,
-				-1));
+		Date date = DateUtils.truncate(dateStringToDate(cur_date), Calendar.MONTH);
+		return strDateToString(DateUtils.add(DateUtils.add(date, Calendar.MONTH, 1), Calendar.DAY_OF_MONTH, -1));
 	}
 
 	/**
@@ -279,10 +273,8 @@ public class DateUtil {
 	 * @throws Exception
 	 */
 	public static String getCurYmdTemplat(String tz_id) throws Exception {
-		String monthNames[] = { "Jan", "Feb", "Mar", "Apr", "May", "Jun",
-				"Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
-		String dayNames[] = { "", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri",
-				"Sat" };
+		String monthNames[] = { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
+		String dayNames[] = { "", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" };
 		if (StringUtils.trimToEmpty(tz_id).equals(""))
 			tz_id = "Asia/Seoul";
 		Calendar cal = Calendar.getInstance(TimeZone.getTimeZone(tz_id));
@@ -334,16 +326,15 @@ public class DateUtil {
 	 */
 	public static String getYmdWeekTemplat(String ymd) {
 		Date dt = dateStringToDate(ymd);
-		return "<b>" + DateFormatUtils.format(dt, "dd MMM", Locale.ENGLISH)
-				+ "</b> " + DateFormatUtils.format(dt, "(EEE)", Locale.ENGLISH);
+		return "<b>" + DateFormatUtils.format(dt, "dd MMM", Locale.ENGLISH) + "</b> " + DateFormatUtils.format(dt, "(EEE)", Locale.ENGLISH);
 	}
 
 	/**
-	 * 날짜 변환 ymd 12 June. 2012 (TUE) -> 20120712 20120712 -> ymd 12 June. 2012
-	 * (TUE)
+	 * 날짜 변환 
+	 * ymd 12 June. 2012 (TUE) -> 20120712, 20120712 -> ymd 12 June. 2012 (TUE)
 	 * 
 	 * @param ymd
-	 *            12 June. 2012 (TUE)
+	 *            12 June. 2012 (TUE), 20120712
 	 * @return
 	 */
 	public static String getYmdTemplat(String ymd) {
@@ -352,15 +343,12 @@ public class DateUtil {
 			return DateFormatUtils.format(dt, "dd MMM. yyyy (EEE)",
 					Locale.ENGLISH);
 		} else {
-			String monthNames[] = { "Jan.", "Feb.", "Mar.", "Apr.", "May.",
-					"Jun.", "Jul.", "Aug.", "Sep.", "Oct.", "Nov.", "Dec." };
-			String months[] = { "01", "02", "03", "04", "05", "06", "07", "08",
-					"09", "10", "11", "12" };
+			String monthNames[] = { "Jan.", "Feb.", "Mar.", "Apr.", "May.", "Jun.", "Jul.", "Aug.", "Sep.", "Oct.", "Nov.", "Dec." };
+			String months[] = { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" };
 			for (int i = 0; i < monthNames.length; i++) {
 				ymd = ymd.replaceAll(monthNames[i], months[i]);
 			}
-			ymd = ymd.split(" ")[2].substring(0, 4) + ymd.split(" ")[1]
-					+ ymd.split(" ")[0];
+			ymd = ymd.split(" ")[2].substring(0, 4) + ymd.split(" ")[1] + ymd.split(" ")[0];
 			return ymd;
 		}
 	}
@@ -373,8 +361,7 @@ public class DateUtil {
 	 * @return 일자(8자리)
 	 * @throws Exception
 	 */
-	public static String getStartDateWeekMonday(String cur_date)
-			throws Exception {
+	public static String getStartDateWeekMonday(String cur_date) throws Exception {
 		Calendar cal = calStringToCal(cur_date);
 		int day = cal.get(Calendar.DAY_OF_WEEK);
 		// 1:일요일 ~ 7:토요일
@@ -416,8 +403,7 @@ public class DateUtil {
 	 * @return 일자(8자리)
 	 * @throws Exception
 	 */
-	public static String getStartDateWeekTuesday(String cur_date)
-			throws Exception {
+	public static String getStartDateWeekTuesday(String cur_date) throws Exception {
 		Calendar cal = calStringToCal(cur_date);
 		int day = cal.get(Calendar.DAY_OF_WEEK);
 		// 1:일요일 ~ 7:토요일
@@ -459,8 +445,7 @@ public class DateUtil {
 	 * @return 일자(8자리)
 	 * @throws Exception
 	 */
-	public static String getStartDateWeekWednesday(String cur_date)
-			throws Exception {
+	public static String getStartDateWeekWednesday(String cur_date) throws Exception {
 		Calendar cal = calStringToCal(cur_date);
 		int day = cal.get(Calendar.DAY_OF_WEEK);
 		// 1:일요일 ~ 7:토요일
@@ -502,8 +487,7 @@ public class DateUtil {
 	 * @return 일자(8자리)
 	 * @throws Exception
 	 */
-	public static String getStartDateWeekThursday(String cur_date)
-			throws Exception {
+	public static String getStartDateWeekThursday(String cur_date) throws Exception {
 		Calendar cal = calStringToCal(cur_date);
 		int day = cal.get(Calendar.DAY_OF_WEEK);
 		// 1:일요일 ~ 7:토요일
@@ -545,8 +529,7 @@ public class DateUtil {
 	 * @return 일자(8자리)
 	 * @throws Exception
 	 */
-	public static String getStartDateWeekFriday(String cur_date)
-			throws Exception {
+	public static String getStartDateWeekFriday(String cur_date) throws Exception {
 		Calendar cal = calStringToCal(cur_date);
 		int day = cal.get(Calendar.DAY_OF_WEEK);
 		// 1:일요일 ~ 7:토요일
@@ -588,8 +571,7 @@ public class DateUtil {
 	 * @return 일자(8자리)
 	 * @throws Exception
 	 */
-	public static String getStartDateWeekSaturday(String cur_date)
-			throws Exception {
+	public static String getStartDateWeekSaturday(String cur_date) throws Exception {
 		Calendar cal = calStringToCal(cur_date);
 		int day = cal.get(Calendar.DAY_OF_WEEK);
 		// 1:일요일 ~ 7:토요일
@@ -631,8 +613,7 @@ public class DateUtil {
 	 * @return 일자(8자리)
 	 * @throws Exception
 	 */
-	public static String getStartDateWeekSunday(String cur_date)
-			throws Exception {
+	public static String getStartDateWeekSunday(String cur_date) throws Exception {
 		Calendar cal = calStringToCal(cur_date);
 		int day = cal.get(Calendar.DAY_OF_WEEK);
 		// 1:일요일 ~ 7:토요일
@@ -674,9 +655,7 @@ public class DateUtil {
 	 * @return 일자(8자리)
 	 * @throws Exception
 	 */
-	public static ArrayList<Hashtable<String, String>> getNowMonthDay(
-			int int_select_year, int int_select_month, int int_select_day)
-			throws Exception {
+	public static ArrayList<Hashtable<String, String>> getNowMonthDay(int int_select_year, int int_select_month, int int_select_day) throws Exception {
 		Calendar day = Calendar.getInstance();
 		day.set(int_select_year, int_select_month - 1, int_select_day);
 		ArrayList<Hashtable<String, String>> arr_temp = new ArrayList<Hashtable<String, String>>();
@@ -685,11 +664,9 @@ public class DateUtil {
 			day.set(Calendar.DATE, int_i);
 			hash_temp.clear();
 			hash_temp.put("YEAR", Integer.toString(day.get(Calendar.YEAR)));
-			hash_temp.put("MONTH",
-					Integer.toString(day.get(Calendar.MONTH) + 1));
+			hash_temp.put("MONTH",Integer.toString(day.get(Calendar.MONTH) + 1));
 			hash_temp.put("DATE", Integer.toString(day.get(Calendar.DATE)));
-			hash_temp.put("WEEK",
-					Integer.toString(day.get(Calendar.DAY_OF_WEEK)));
+			hash_temp.put("WEEK", Integer.toString(day.get(Calendar.DAY_OF_WEEK)));
 			arr_temp.add(hash_temp);
 		}
 		return arr_temp;
@@ -703,12 +680,9 @@ public class DateUtil {
 	 * @return String 빈날짜 html
 	 * @throws Exception
 	 */
-	public static String strFrontBlank(
-			ArrayList<Hashtable<String, String>> month_day_list)
-			throws Exception {
+	public static String strFrontBlank(ArrayList<Hashtable<String, String>> month_day_list) throws Exception {
 		StringBuffer sb = new StringBuffer();
-		Hashtable<String, String> ht = (Hashtable<String, String>) month_day_list
-				.get(0);
+		Hashtable<String, String> ht = (Hashtable<String, String>) month_day_list.get(0);
 		String week = ObjectUtils.toString(ht.get("WEEK"));
 		int day_blank = 0;
 		if (week.equals("1")) {
@@ -732,12 +706,9 @@ public class DateUtil {
 	 * @return String 빈날짜 html
 	 * @throws Exception
 	 */
-	public static String strEndBlank(
-			ArrayList<Hashtable<String, String>> month_day_list)
-			throws Exception {
+	public static String strEndBlank(ArrayList<Hashtable<String, String>> month_day_list) throws Exception {
 		StringBuffer sb = new StringBuffer();
-		Hashtable<String, String> ht = (Hashtable<String, String>) month_day_list
-				.get(month_day_list.size() - 1);
+		Hashtable<String, String> ht = (Hashtable<String, String>) month_day_list.get(month_day_list.size() - 1);
 		String week = ObjectUtils.toString(ht.get("WEEK"));
 		int day_blank = 0;
 		if (!week.equals("1"))
@@ -769,10 +740,8 @@ public class DateUtil {
 		return sf.format(date);
 	}
 
-	public static Date StringtoDateByFormat(String currentDate,
-			String dateFormat) {
-		SimpleDateFormat format = new SimpleDateFormat(dateFormat,
-				java.util.Locale.ENGLISH);
+	public static Date StringtoDateByFormat(String currentDate, String dateFormat) {
+		SimpleDateFormat format = new SimpleDateFormat(dateFormat, java.util.Locale.ENGLISH);
 		ParsePosition poss = new ParsePosition(0);
 		Date date = format.parse(currentDate, poss);
 		return date;
