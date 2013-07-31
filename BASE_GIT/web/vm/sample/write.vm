@@ -11,6 +11,6 @@ file : <input type="file" name="attach[0]" id="attach"/> <br/> <input type="file
 <a href="javascript:void(0)" onclick="Sample.Regist()">Regist</a>&nbsp;
 <a href="javascript:void(0)" onclick="Sample.next('1')">LIST</a>
 
-<script language="javascript">CKEDITOR.replace('content');</script>
+<script type="text/javascript">CKEDITOR.replace('content');</script>
 
 #include("sample/inc/footer.vm")

@@ -14,7 +14,7 @@ no data
 #end
 
 <div id="pagebox"></div>
-<script language="javascript">
+<script type="text/javascript">
 var page = Sample.show_page($dto.pageNo, $dto.totalPageCnt, $dto.pageBlock);
 jQuery('#pagebox').html(page);
 </script>

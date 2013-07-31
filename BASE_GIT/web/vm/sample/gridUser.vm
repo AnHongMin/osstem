@@ -6,14 +6,14 @@
 	<meta http-equiv="cache-control" content="no-cache" />
 	<meta http-equiv="expires" content="0" />
 	<title> Sample </title>
-	<script language="javascript" src="/js/lib/jquery.jqGrid-4.3.2/js/jquery-1.7.2.min.js"></script>
-    <script language="javascript" src="/js/lib/jquery.jqGrid-4.3.2/js/i18n/grid.locale-en.js"></script>
-    <script language="javascript" src="/js/lib/jquery.jqGrid-4.3.2/js/jquery.jqGrid.min.js"></script>
+	<script type="text/javascript" src="/js/lib/jquery.jqGrid-4.3.2/js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="/js/lib/jquery.jqGrid-4.3.2/js/i18n/grid.locale-en.js"></script>
+    <script type="text/javascript" src="/js/lib/jquery.jqGrid-4.3.2/js/jquery.jqGrid.min.js"></script>
     
     <link rel="stylesheet" type="text/css" media="screen" href="/js/lib/jquery.jqGrid-4.3.2/css/ui.jqgrid.css" /> 
     <link rel="stylesheet" type="text/css" media="screen" href="/js/lib/jquery.jqGrid-4.3.2/themes/ui-lightness/jquery-ui-1.8.20.custom.css"/>
     
-    <script language="javascript">
+    <script type="text/javascript">
 	 $(document).ready(function(){
 	 	var id = "gridList";
     	jQuery("#"+id).jqGrid({

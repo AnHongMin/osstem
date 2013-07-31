@@ -11,7 +11,7 @@
 .date-saturday .ui-state-default {  background-image: none; color: #0000FF;}
 .date-holiday0 .ui-state-default {  background-image: none; color: #FB0A0A;}
 </style>
-<script language="javascript" type="text/javascript">
+<script type="text/javascript">
 	//http://woosi.tistory.com/127 참조
 	var holidays = {
 		"0101":{type:0, title:"신정"},

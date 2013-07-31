@@ -16,6 +16,6 @@ no data
 <a href="javascript:void(0)" onclick="Sample.Modify()">MODIFY</a>&nbsp;
 <a href="javascript:void(0)" onclick="Sample.next('$dto.pageNo')">LIST</a>
 	
-<script language="javascript">CKEDITOR.replace('content');</script>
+<script type="text/javascript">CKEDITOR.replace('content');</script>
 
 #include("sample/inc/footer.vm")

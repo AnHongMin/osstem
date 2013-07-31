@@ -6,8 +6,8 @@
 	<meta http-equiv="cache-control" content="no-cache" />
 	<meta http-equiv="expires" content="0" />
 	<title> Sample </title>
-	<script language="javascript" src="/js/lib/jquery.js"></script>
-	<script language="javascript" src="/js/lib/jfastmenu/jfastmenu_v1.2.0/jfastmenu.js"></script>
+	<script type="text/javascript" src="/js/lib/jquery.js"></script>
+	<script type="text/javascript" src="/js/lib/jfastmenu/jfastmenu_v1.2.0/jfastmenu.js"></script>
 	<link rel="stylesheet" type="text/css" href="/js/lib/jfastmenu/apycom.com-12-gray/menu.css" />
 	<style type="text/css">
     * { margin:0;
@@ -26,7 +26,7 @@
     }
 
 	</style>
-	<script language="javascript">
+	<script type="text/javascript">
 	$(document).ready(function(){
 		jQuery.jFastMenu("#menu");
 	});
