@@ -37,7 +37,7 @@ public class EmailUtil {
 	 * @throws Exception
 	 */
 	@SuppressWarnings("rawtypes")
-	public int setSendMail(String str_to_email, String str_to_name,String str_from_email, String str_from_name, String str_title,String str_content, Vector vec_files) throws Exception {
+	public static int setSendMail(String str_to_email, String str_to_name,String str_from_email, String str_from_name, String str_title,String str_content, Vector vec_files) throws Exception {
 		int int_result = 0;
 
 		try {
@@ -50,7 +50,7 @@ public class EmailUtil {
 			// 이메일 메시지를 만듭니다.
 			HtmlEmail email = new HtmlEmail();
 			email.setCharset("UTF-8"); // 인코딩셋팅
-			email.setHostName("211.111.213.200"); // SMTP 서버
+			email.setHostName("smtp.osstem.com"); // SMTP 서버
 			email.addTo(str_to_email, str_to_name); // 받는사람 정보
 			email.setFrom(str_from_email, str_from_name); // 보내는사람 정보
 			email.setSubject(str_title); // 제목
@@ -73,6 +73,7 @@ public class EmailUtil {
 			// 보내기
 			email.send();
 		} catch (Exception e) {
+			e.printStackTrace();
 			return 1;
 		}
 
