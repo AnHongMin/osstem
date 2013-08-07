@@ -1159,7 +1159,7 @@
         	 *          osstem.ui.showLayer("layer1", this);
         	 *     });
         	 *
-        	 * @param  selector : selector. a div shows  below this targer element.
+        	 * @param  selector : selector. a div shows  below this target element.
         	 * @param  source      : event source element 
         	 */
         	showLayer: function(selector, source) {
