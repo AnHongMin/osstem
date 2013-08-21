@@ -978,6 +978,34 @@
              * @parma direction
              */ 
             moveSelect : function(elementId, direction) {
+            	/*
+            	var selector = "#"+elementId;
+            	var optionObjects = [];
+        		var optionObjectsIndex = [];
+        		$(selector+" option").each(function(){
+					optionObjects.push($(this));
+        			optionObjectsIndex.push($(this).index());
+        		});
+        		if(direction == "up"){
+        			$(selector+" option:selected").each(function(){
+        				var idx = $(selector+" option").index(this);
+        				var newPos = idx - 1;
+        				if(newPos > -1){
+        					$(selector+" option").eq(newPos).before(optionObjects[idx]);
+        				}
+        			});
+        		}else if(direction == "down"){
+        			for(var i=optionObjects.length-1; i>=0; i--){
+        				if(optionObjectsIndex[i]+1 == optionObjectsIndex.length){
+        					continue;
+        				}else{
+        					if($(selector+" option").eq([optionObjectsIndex[i]]).prop("selected")){
+        						$(selector+" option").eq([optionObjectsIndex[i]+1]).after(optionObjects[i]);
+        					}
+        				}
+        			}
+        		}
+        		*/
             	var element = document.getElementById(elementId);  // Multiple Select Element
                 var selIndex = element.selectedIndex;              // Selected Index
                 var elementLength = element.options.length;        // Select Element Item Length
