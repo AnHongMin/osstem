@@ -206,6 +206,14 @@
             	}
             },
             /**
+             * 숫자 형식으로 변환합니다.
+             * @param str 원본문자열 
+             */
+            formatNumber : function(str) {
+            	if(!str) return "";
+            	return str.replace(/[^0-9]+/, "");
+            },
+            /**
              * 문자열이 통화 형식인지 체크
              * @param str 원본문자열 
              */
@@ -1166,7 +1174,7 @@
         		//var position = $(source).position();
         		var offset   = $(source).offset();
         		var height   = $(source).outerHeight();
-        		var width    = $(source).outerWidth();
+        		//var width    = $(source).outerWidth();
         		if (typeof console == "object") {
         			console.log(offset.left);
             		console.log(offset.top + height);
