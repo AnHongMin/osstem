@@ -265,24 +265,8 @@
              * @param str 원본문자열  
              */
             isMail : function (str) {
-            	/*
-				- @가 2개이상일 경우 
-				- .이 붙어서 나오는 경우
-				-  @.나  .@이 존재하는 경우
-				- 맨처음이.인 경우
-				- @이전에 하나이상의 문자가 있어야 함
-				- @가 하나있어야 함
-				- Domain명에 .이 하나 이상 있어야 함
-				- Domain명의 마지막 문자는 영문자 2~4개이어야 함
-
-            	var check1 = /(@.*@)|(\.\.)|(@\.)|(\.@)|(^\.)/;  
-            	var check2 = /^[a-zA-Z0-9\-\.\_]+\@[a-zA-Z0-9\-\.]+\.([a-zA-Z]{2,4})$/; 
-            	if ( !check1.test(str) && check2.test(str) ) { 
-            		return true; 
-            	} else { 
-            		return false; 
-            	} 
-            	*/
+            	//var regEmail = new RegExp("([xA1-xFEa-z0-9_-]+@[xA1-xFEa-z0-9-]+\.[a-z0-9-]+)","gi");
+            	//if(!regEmail.test(str)){
             	var mailexp =  /^[0-9a-zA-Z-_\.]*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i; 
             	if(!mailexp.test(str)){
             		return false;
