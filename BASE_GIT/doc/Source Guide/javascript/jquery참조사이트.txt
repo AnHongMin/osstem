@@ -1,6 +1,9 @@
 http://cdnjs.com/
 http://entitycode.com/
 
+- 모바일, 테블릿 브라우져 확인
+https://github.com/codefuze/js-mobile-tablet-redirect
+
 - jquery ui 플러그인 모음
 http://www.htmldrive.net/
 
