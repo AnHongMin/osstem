@@ -9,50 +9,104 @@
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 	<script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
     <script type="text/javascript">    
- 	// 테이블의 템플릿
-    var markup = "<tr id=${index}>"
-				+"<td><INPUT name='test' type='text' value=${index}></td>"
-				+"<td><a href=\"javascript:sample.delRow('${index}')\">삭제</a></td>"
-				+"<td><a href=\"javascript:sample.addAfterRow('${index}')\">추가</a></td>"
-				+"</tr>";
-    var sample = {
-    	// tr의 고유 인덱스
+ 	var sample = {
+    	// 템플릿
+   		markup : "<p id=${index}>"
+				+"<input name='test1' type='text' value=${test1}>"
+				+"<input name='test2' type='text' value=${test2}>"
+				+"<span><a href=\"javascript:sample.delRow('${index}')\">삭제</a></span>"
+				+"<span><a href=\"javascript:sample.addAfterRow('${index}')\">추가</a></span>"
+				+"</p>",
+				
+    	// 고유 인덱스
     	index: 0,
+    	
 		/**
-   		 * 테이블의 행추가
-   		 * @param tableSelector 테이블 셀렉터
+   		 * 행추가
+   		 * @param tableSelector 셀렉터
    		 */
    		addRow : function(tableSelector){
-   			$(tableSelector).append(this.getRowHtml());	
+   			$("#"+tableSelector).append(this.getRowHtml(tableSelector));	
    		},
+   		
+   		/**
+   		 * 행추가
+   		 * @param tableSelector 셀렉터
+   		 * @param tableSelector 데이터 객체
+   		 */
+   		addRowData : function(tableSelector, dataObj){
+   			$("#"+tableSelector).append(this.getRowHtml(tableSelector, dataObj));
+   		},
+   		
  		/**
-   		 * 테이블의 지정된 인덱스 위치의 다음 행추가
-   		 * @param id 테이블 tr의 지정된 위치
+   		 * 지정된 인덱스 위치의 다음 행추가
+   		 * @param id 행의 지정된 위치
    		 */
    		addAfterRow : function(id){
-			$('#'+id).after(this.getRowHtml());	
+   			var tableSelector = id.split("_")[0];
+			$('#'+id).after(this.getRowHtml(tableSelector));	
    		},
-   		// 테이블의 행의 템플릿
-   		getRowHtml : function(){
+   		
+   		// 행의 템플릿
+   		getRowHtml : function(tableSelector, dataObj){
    			this.index++;
-   			var data = [
-   			 	{"index":this.index}
-   			];  			
-			$.template( "sampleTemplate", markup);
+   			var data = {
+   			 	"index":tableSelector+"_"+this.index
+   			 	,"test1":""
+   			 	,"test2":""
+   			};
+
+   			if(dataObj != undefined){
+   				$.extend(data, dataObj);
+   	   			for (var prop in data){
+   	   				if (typeof console == "object") {
+   	   					console.log(prop + ":"+data[prop]);
+   	   				}
+   	   	        }
+   			}
+
+			$.template( "sampleTemplate", this.markup);
    			return $.tmpl( "sampleTemplate", data);
    		},
+   		
    		/**
-   		 * 테이블의 행 삭제
-   		 * @param index 테이블 tr의 지정된 위치
+   		 * 행 삭제
+   		 * @param index 행의 지정된 위치
    		 */
    		delRow : function(index){
    			$('#'+index).remove();
    		}
    	};
+
+    $(document).ready(function(){
+	    jQuery("#addBtn1").bind("click", function(e){
+	    	var dataObj = {
+				"test1":"default1",
+				"test2":"default2"
+			};
+	    	sample.addRowData('temp1',dataObj);
+		});
+	    jQuery("#addBtn2").bind("click", function(e){
+	    	var dataObj = {
+				"test1":"default3",
+				"test2":"default4"
+			};
+	    	sample.addRowData('temp2',dataObj);
+		});	
+    });
     </script>    
   </head>
 <body>
-<a href="javascript:void(0)" onclick="javascript:sample.addRow('#temp')">추가</a>
-<table id="temp"></table>
+<span id="addBtn1">[추가1]</span><span id="addBtn2">[추가2]</span>
+<table>
+	<tr>
+		<td>레이어1</td>
+		<td>레이어2</td>
+	</tr>
+	<tr>
+		<td><div id="temp1"></div></td>
+		<td><div id="temp2"></div></td>
+	</tr>
+</table>
 </body>
 </html>
