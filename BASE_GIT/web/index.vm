@@ -67,11 +67,12 @@
 <body>
 	<div id="menu">
 		<ul class="menu">
-			<li><a href="/vm/countDown.html" class="parent"><span>countDown.html</span></a></li>
+			<li><a href="/vm/extjs/sample.html" class="parent"><span>test</span></a></li>
+			#include("vm/inc/extJs.vm")
+			<!--
 			#include("vm/inc/cheditor.vm")
 			#include("vm/inc/osstemJs.vm")
-			<!--
-			#include("vm/inc/sample.vm")			
+			#include("vm/inc/sample.vm")
 			<li><a href="/vm/mustache.html" class="parent"><span>mustache.html</span></a></li>
 			
 			##include("vm/inc/table.vm")
