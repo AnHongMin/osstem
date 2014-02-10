@@ -22,7 +22,7 @@ public class RequestPrint {
 	
 	/** 메시지를 형식화 합니다. 여기서는 앞에 공백을 삽입합니다. */
 	private static void  formatPrint(String msg) {
-		logger.info("    " + msg);
+		System.out.println("    " + msg);
 	}
 	
 	/** 웹요청 정보를 Console에 출력합니다.  개발시에만 사용하도록 합니다. */ 
@@ -31,10 +31,10 @@ public class RequestPrint {
 		
 		// for debug  by Andy
 		formatPrint("\n");
-		logger.info("--------------------------------------------------");
-		logger.info("--------------------------------------------------");
-		logger.info("Web application root=" + req.getSession().getServletContext().getRealPath("/"));
-		logger.info("1.HTTPREQUEST INFORMATION.");
+		System.out.println("--------------------------------------------------");
+		System.out.println("--------------------------------------------------");
+		System.out.println("Web application root=" + req.getSession().getServletContext().getRealPath("/"));
+		System.out.println("1.HTTPREQUEST INFORMATION.");
 		formatPrint("URI:" + req.getRequestURI());
 		formatPrint("QueryString:" + req.getQueryString());
 		formatPrint("Form Parameters==:");
@@ -64,14 +64,14 @@ public class RequestPrint {
 			}
 		}
 		pmap = null;  // collect garbage
-		logger.info("2. HEADER INFO.");
+		System.out.println("2. HEADER INFO.");
 		Enumeration enum1 = req.getHeaderNames();
 		while(enum1.hasMoreElements()) {
 			String headerName = (String)enum1.nextElement();
 			String str =  req.getHeader(headerName); 
 			formatPrint("[" + headerName + "]" + str);
 		}
-		logger.info("--------------------------------------------------");
-		logger.info("--------------------------------------------------");		
+		System.out.println("--------------------------------------------------");
+		System.out.println("--------------------------------------------------");		
 	}
 }
